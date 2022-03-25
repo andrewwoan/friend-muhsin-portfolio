@@ -36,9 +36,9 @@ export default class Controls extends EventEmitter {
             new THREE.Vector3(-6, 1.5, -1),
             new THREE.Vector3(0, 1.5, -1),
             new THREE.Vector3(2, 1.5, 5),
-            new THREE.Vector3(20, 1.5, 5),
-            new THREE.Vector3(20, 1.5, 10),
-            new THREE.Vector3(1, 1.5, 11),
+            new THREE.Vector3(20, 1.5, 11),
+            new THREE.Vector3(20, 1.5, 15),
+            new THREE.Vector3(1, 1.5, 15),
         ]);
 
         this.curve.closed = true;
