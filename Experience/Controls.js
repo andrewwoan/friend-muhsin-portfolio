@@ -11,6 +11,12 @@ export default class Controls extends EventEmitter {
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
         this.camera = this.experience.camera;
+        this.crossVector = new THREE.Vector3();
+        this.normalizedVector = new THREE.Vector3();
+        this.upVector = new THREE.Vector3(0, 1, 0);
+
+        this.nextPoint = true;
+
         this.position = 0;
         this.speed = 0.05;
 
@@ -32,18 +38,18 @@ export default class Controls extends EventEmitter {
     setControls() {
         // Set camera Path
         this.curve = new THREE.CatmullRomCurve3([
-            new THREE.Vector3(-6, 1.5, 10),
-            new THREE.Vector3(-6, 1.5, -1),
+            new THREE.Vector3(-1, 1.5, 5),
+            new THREE.Vector3(-1, 1.5, -1),
             new THREE.Vector3(0, 1.5, -1),
-            new THREE.Vector3(2, 1.5, 5),
+            new THREE.Vector3(0, 1.5, 9),
             new THREE.Vector3(20, 1.5, 11),
-            new THREE.Vector3(20, 1.5, 15),
-            new THREE.Vector3(1, 1.5, 15),
+            new THREE.Vector3(20, 1.5, 10),
+            new THREE.Vector3(1, 1.5, 10),
         ]);
 
         this.curve.closed = true;
 
-        this.points = this.curve.getPoints(50);
+        this.points = this.curve.getPoints(200);
         this.geometry = new THREE.BufferGeometry().setFromPoints(this.points);
 
         // Debugging Lines
@@ -58,12 +64,13 @@ export default class Controls extends EventEmitter {
     }
 
     onWheel = (event) => {
-        console.log(event);
-
+        console.log(this.crossVector);
         if (event.deltaY > 0) {
             this.lerp.target += this.speed * 0.2;
+            this.nextPoint = true;
         } else {
             this.lerp.target -= this.speed * 0.2;
+            this.nextPoint = false;
         }
     };
 
@@ -71,7 +78,6 @@ export default class Controls extends EventEmitter {
         console.log(event.pointerType);
         window.addEventListener("pointermove", this.onPointerMove);
         window.addEventListener("pointerup", this.onPointerUp);
-        // console.log("Pointer Down");
         if (event.target.hasPointerCapture(event.pointerId)) {
             event.target.releasePointerCapture(event.pointerId);
         }
@@ -79,8 +85,6 @@ export default class Controls extends EventEmitter {
 
     onPointerMove = (event) => {
         console.log("Pointer Move");
-        // console.log(event.clientX);
-        // console.log(event.movementX);
         if (event.movementX < 0) {
             this.lerp.target += this.speed * 0.01;
         } else {
@@ -95,17 +99,38 @@ export default class Controls extends EventEmitter {
         window.removeEventListener("pointerup", this.onPointerUp);
     };
 
-    // onPointerCancel(event) {
-    //     removePointer(event);
-    // }
+    onPointerCancel(event) {
+        removePointer(event);
+    }
 
     update() {
-        // console.log(this.camera.camera.position);
-        // console.log(this.time.elapsedTime);
-        // console.log(this.pathTarget.x - (this.pathTarget.x - 0.2));
+        // Lerp Function for smoothing the Camera movement
         this.lerpFunc(this.lerp.current, this.lerp.target, this.lerp.factor);
+        // Get a point on the curve
         this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
+
+        // Get the direction vector when scrolling down
+        if (this.nextPoint) {
+            this.normalizedVector.subVectors(
+                this.curve.getPoint((this.lerp.current % 1.0) + 0.001),
+                this.camera.camera.position
+            );
+        } else {
+            // Get the direction vector when scrolling up
+            this.normalizedVector.subVectors(
+                this.camera.camera.position,
+                this.curve.getPoint((this.lerp.current % 1.0) - 0.001)
+            );
+        }
+        // this.normalizedVector.normalize();
+        // Cross Product of directional vector with vector only up gives a vector pointing outside the curve
+        this.crossVector.crossVectors(this.upVector, this.normalizedVector);
+        // Too short and only points in center so multiple it by a scalar
+        this.crossVector.multiplyScalar(100000000000);
+
+        // Copy the camera position on to the curve
         this.camera.camera.position.copy(this.pathTarget);
+        this.camera.camera.lookAt(this.normalizedVector);
     }
 
     destroy() {}
