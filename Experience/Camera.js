@@ -10,7 +10,7 @@ export default class Camera {
         this.canvas = this.experience.canvas;
 
         this.createCamera();
-        // this.setOrbitControls();
+        this.setOrbitControls();
     }
 
     createCamera() {
@@ -35,6 +35,6 @@ export default class Camera {
     }
 
     update() {
-        // this.controls.update();
+        this.controls.update();
     }
 }

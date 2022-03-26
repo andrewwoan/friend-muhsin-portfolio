@@ -18,7 +18,7 @@ export default class Controls extends EventEmitter {
         this.nextPoint = true;
 
         this.position = 0;
-        this.speed = 0.05;
+        this.speed = 0.005;
 
         this.lerp = {
             current: 0,
@@ -42,8 +42,7 @@ export default class Controls extends EventEmitter {
             new THREE.Vector3(-1, 1.5, -1),
             new THREE.Vector3(0, 1.5, -1),
             new THREE.Vector3(4, 1.5, 7),
-            new THREE.Vector3(7, 1.5, 9),
-            new THREE.Vector3(20, 1.5, 7),
+            new THREE.Vector3(20, 1.5, 5),
             new THREE.Vector3(20, 1.5, 10),
             new THREE.Vector3(1, 1.5, 10),
         ]);
@@ -67,10 +66,10 @@ export default class Controls extends EventEmitter {
     onWheel = (event) => {
         console.log(this.crossVector);
         if (event.deltaY > 0) {
-            this.lerp.target += this.speed * 0.2;
+            this.lerp.target += this.speed;
             this.nextPoint = true;
         } else {
-            this.lerp.target -= this.speed * 0.2;
+            this.lerp.target -= this.speed;
             this.nextPoint = false;
         }
     };
@@ -105,31 +104,31 @@ export default class Controls extends EventEmitter {
     }
 
     update() {
-        // Lerp Function for smoothing the Camera movement
-        this.lerpFunc(this.lerp.current, this.lerp.target, this.lerp.factor);
-        // Get a point/position on the curve and assign it to this.pathTarget
-        this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
-        // Get the direction vector when scrolling down
-        if (this.nextPoint) {
-            this.normalizedVector.subVectors(
-                this.curve.getPoint((this.lerp.current % 1.0) + 0.000001), //The point that is right of the camera
-                this.camera.camera.position
-            );
-        } else {
-            // Get the direction vector when scrolling up
-            this.normalizedVector.subVectors(
-                this.camera.camera.position,
-                this.curve.getPoint((this.lerp.current % 1.0) - 0.000001) //The point that is left of the camera
-            );
-        }
-        this.normalizedVector.normalize();
-        // Cross Product of directional vector with vector only up gives a vector pointing outside the curve
-        this.crossVector.crossVectors(this.upVector, this.normalizedVector);
-        // Too short and only points in center so multiple it by a scalar
-        this.crossVector.multiplyScalar(10000000);
-        // Copy the camera position on to the curve
-        this.camera.camera.position.copy(this.pathTarget);
-        this.camera.camera.lookAt(this.crossVector);
+        // // Lerp Function for smoothing the Camera movement
+        // this.lerpFunc(this.lerp.current, this.lerp.target, this.lerp.factor);
+        // // Get a point/position on the curve and assign it to this.pathTarget
+        // this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
+        // this.camera.camera.position.copy(this.pathTarget);
+        // // Get the direction vector when scrolling down
+        // if (this.nextPoint) {
+        //     this.normalizedVector.subVectors(
+        //         this.curve.getPoint((this.lerp.current % 1.0) + 0.000001), //The point that is right of the camera
+        //         this.camera.camera.position
+        //     );
+        // } else {
+        //     // Get the direction vector when scrolling up
+        //     this.normalizedVector.subVectors(
+        //         this.camera.camera.position,
+        //         this.curve.getPoint((this.lerp.current % 1.0) - 0.000001) //The point that is left of the camera
+        //     );
+        // }
+        // this.normalizedVector.normalize();
+        // // Cross Product of directional vector with vector only up gives a vector pointing outside the curve
+        // // this.normalizedVector.add(this.camera.camera.position);
+        // this.crossVector.crossVectors(this.upVector, this.normalizedVector);
+        // this.crossVector.multiplyScalar(10000);
+        // // Copy the camera position on to the curve
+        // this.camera.camera.lookAt(this.crossVector);
     }
 
     destroy() {}
