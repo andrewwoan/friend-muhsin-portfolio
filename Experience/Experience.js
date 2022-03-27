@@ -6,6 +6,7 @@ import Camera from "./Camera.js";
 import Renderer from "./Renderer.js";
 import World from "./World.js";
 import Controls from "./Controls.js";
+import Raycaster from "./Raycaster.js";
 
 import assets from "./Utils/assets.js";
 
@@ -26,6 +27,7 @@ export default class Experience {
         this.time = new Time();
         this.world = new World();
         this.controls = new Controls();
+        // this.raycaster = new Raycaster();
 
         this.sizes.on("resize", () => {
             this.resize();
@@ -44,5 +46,7 @@ export default class Experience {
         this.camera.update();
         this.renderer.update();
         this.controls.update();
+        this.world.update();
+        // this.raycaster.update();
     }
 }

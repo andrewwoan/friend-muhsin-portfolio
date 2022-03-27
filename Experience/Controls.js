@@ -11,45 +11,51 @@ export default class Controls extends EventEmitter {
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
         this.camera = this.experience.camera;
+
+        // Scrolling Controls---------------------------------------
         this.crossVector = new THREE.Vector3();
         this.normalizedVector = new THREE.Vector3();
         this.upVector = new THREE.Vector3(0, 1, 0);
-
+        this.pathTarget = new THREE.Vector3(0, 0, 0);
         this.nextPoint = true;
-
         this.position = 0;
         this.speed = 0.005;
-
         this.lerp = {
             current: 0,
             target: 0,
             factor: 0.09,
         };
 
-        this.pathTarget = new THREE.Vector3(0, 0, 0);
+        this.disableScrolling = false;
 
-        this.setControls();
+        // this.group = new THREE.Group();
+        // this.group.add(this.camera.camera);
+        // this.scene.add(this.group);
+
+        this.setScrollingControls();
     }
 
     lerpFunc(current, target, factor) {
         this.lerp.current = current * (1 - factor) + target * factor;
     }
 
-    setControls() {
+    setScrollingControls() {
         // Set camera Path
         this.curve = new THREE.CatmullRomCurve3([
             new THREE.Vector3(-1, 1.5, 5),
             new THREE.Vector3(-1, 1.5, -1),
             new THREE.Vector3(0, 1.5, -1),
             new THREE.Vector3(4, 1.5, 7),
-            new THREE.Vector3(20, 1.5, 5),
-            new THREE.Vector3(20, 1.5, 10),
+            new THREE.Vector3(30, 1.5, 2),
+            new THREE.Vector3(30, 1.5, 10),
             new THREE.Vector3(1, 1.5, 10),
         ]);
 
         this.curve.closed = true;
+        this.curve.arcLengthDivisions = 1000;
+        console.log(this.curve.arcLengthDivisions);
 
-        this.points = this.curve.getPoints(200);
+        this.points = this.curve.getPoints(1000);
         this.geometry = new THREE.BufferGeometry().setFromPoints(this.points);
 
         // Debugging Lines
@@ -64,13 +70,15 @@ export default class Controls extends EventEmitter {
     }
 
     onWheel = (event) => {
-        console.log(this.crossVector);
-        if (event.deltaY > 0) {
-            this.lerp.target += this.speed;
-            this.nextPoint = true;
-        } else {
-            this.lerp.target -= this.speed;
-            this.nextPoint = false;
+        // console.log(this.crossVector);
+        if (this.disableScrolling === false) {
+            if (event.deltaY > 0) {
+                this.lerp.target += this.speed;
+                this.nextPoint = true;
+            } else {
+                this.lerp.target -= this.speed;
+                this.nextPoint = false;
+            }
         }
     };
 
@@ -104,31 +112,62 @@ export default class Controls extends EventEmitter {
     }
 
     update() {
-        // // Lerp Function for smoothing the Camera movement
-        // this.lerpFunc(this.lerp.current, this.lerp.target, this.lerp.factor);
-        // // Get a point/position on the curve and assign it to this.pathTarget
-        // this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
-        // this.camera.camera.position.copy(this.pathTarget);
-        // // Get the direction vector when scrolling down
-        // if (this.nextPoint) {
-        //     this.normalizedVector.subVectors(
-        //         this.curve.getPoint((this.lerp.current % 1.0) + 0.000001), //The point that is right of the camera
-        //         this.camera.camera.position
+        // if (this.disableScrolling === false) {
+        //     this.lerpFunc(
+        //         this.lerp.current,
+        //         this.lerp.target,
+        //         this.lerp.factor
         //     );
-        // } else {
-        //     // Get the direction vector when scrolling up
-        //     this.normalizedVector.subVectors(
-        //         this.camera.camera.position,
-        //         this.curve.getPoint((this.lerp.current % 1.0) - 0.000001) //The point that is left of the camera
-        //     );
+        //     this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
+        //     this.group.position.copy(this.pathTarget);
+        //     if (this.nextPoint) {
+        //         this.normalizedVector.subVectors(
+        //             this.curve.getPoint((this.lerp.current % 1.0) + 0.000001),
+        //             this.group.position
+        //         );
+        //     } else {
+        //         this.normalizedVector.subVectors(
+        //             this.group.position,
+        //             this.curve.getPoint((this.lerp.current % 1.0) - 0.000001)
+        //         );
+        //     }
+        //     this.normalizedVector.normalize();
+        //     this.crossVector.crossVectors(this.upVector, this.normalizedVector);
+        //     this.crossVector.multiplyScalar(10000);
+        //     this.group.lookAt(this.crossVector);
+        //     // console.log(this.camera.camera.position);
         // }
-        // this.normalizedVector.normalize();
-        // // Cross Product of directional vector with vector only up gives a vector pointing outside the curve
-        // // this.normalizedVector.add(this.camera.camera.position);
-        // this.crossVector.crossVectors(this.upVector, this.normalizedVector);
-        // this.crossVector.multiplyScalar(10000);
-        // // Copy the camera position on to the curve
-        // this.camera.camera.lookAt(this.crossVector);
+
+        let testVector = new THREE.Vector3(0, 0, 0);
+        let testVector2 = new THREE.Quaternion();
+        let magic = this.camera.camera.getWorldPosition(testVector);
+        let magic2 = this.camera.camera.getWorldQuaternion(testVector2);
+        // console.log(magic);
+        // console.log(magic2);
+        if (this.disableScrolling === false) {
+            this.lerpFunc(
+                this.lerp.current,
+                this.lerp.target,
+                this.lerp.factor
+            );
+            this.curve.getPoint(this.lerp.current % 1.0, this.pathTarget);
+            this.camera.camera.position.copy(this.pathTarget);
+            if (this.nextPoint) {
+                this.normalizedVector.subVectors(
+                    this.curve.getPoint((this.lerp.current % 1.0) + 0.000001),
+                    this.camera.camera.position
+                );
+            } else {
+                this.normalizedVector.subVectors(
+                    this.camera.camera.position,
+                    this.curve.getPoint((this.lerp.current % 1.0) - 0.000001)
+                );
+            }
+            this.normalizedVector.normalize();
+            this.crossVector.crossVectors(this.upVector, this.normalizedVector);
+            this.crossVector.multiplyScalar(10000);
+            this.camera.camera.lookAt(this.crossVector);
+        }
     }
 
     destroy() {}

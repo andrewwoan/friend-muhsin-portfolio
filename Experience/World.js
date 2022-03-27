@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Experience from "./Experience.js";
 import Gallery from "./Gallery.js";
+import Raycaster from "./Raycaster.js";
 
 export default class World {
     constructor() {
@@ -9,9 +10,14 @@ export default class World {
         this.resources = this.experience.resources;
 
         this.resources.on("ready", () => {
-            const gallery = new Gallery();
+            this.gallery = new Gallery();
+            this.raycaster = new Raycaster();
         });
     }
 
-    update() {}
+    update() {
+        if (this.raycaster) {
+            this.raycaster.update();
+        }
+    }
 }

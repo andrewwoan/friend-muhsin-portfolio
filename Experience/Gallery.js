@@ -21,7 +21,7 @@ export default class Gallery {
             child.material = new THREE.MeshBasicMaterial({
                 map: this.material,
             });
-            console.log(child);
+            // console.log(child);
         });
 
         const imageOne = this.model.children.find(
