@@ -14,7 +14,13 @@ export default class Raycaster extends EventEmitter {
         this.render = this.experience.render;
         this.controls = this.experience.controls;
         this.resources = this.experience.resources.items.gallery.scene.children;
-        this.timeline = new gsap.timeline();
+
+        this.timeline = new gsap.timeline({
+            onReverseComplete: () => {
+                console.log("reversed");
+                this.controls.disableScrolling = false;
+            },
+        });
 
         this.backButton = document.querySelector(".back-btn");
         this.backButton.addEventListener("click", this.backButtonAction);
@@ -37,12 +43,13 @@ export default class Raycaster extends EventEmitter {
 
     backButtonAction = (event) => {
         this.backButton.classList.add("hidden");
-        this.timeline.reverse({
-            onComplete: function () {
+        this.timeline.reverse();
+        this.timeline = new gsap.timeline({
+            onReverseComplete: () => {
+                console.log("reversed");
                 this.controls.disableScrolling = false;
             },
         });
-        this.timeline = new gsap.timeline();
 
         // this.timeline2 = new gsap.timeline();
         // this.timeline2.to(this.camera.camera.position, {
@@ -85,6 +92,7 @@ export default class Raycaster extends EventEmitter {
                     },
                     ">-1.2"
                 );
+                this.timeline.play(0);
             }
             this.backButton.classList.remove("hidden");
         }

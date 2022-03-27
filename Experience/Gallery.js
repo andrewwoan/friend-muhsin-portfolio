@@ -66,8 +66,8 @@ export default class Gallery {
         const gridHelper = new THREE.GridHelper(size, divisions);
 
         const axesHelper = new THREE.AxesHelper(100);
-        this.experience.scene.add(axesHelper);
-        this.experience.scene.add(gridHelper);
+        // this.experience.scene.add(axesHelper);
+        // this.experience.scene.add(gridHelper);
 
         // this.model.scale.set(0.3, 0.3, 0.3);
 
