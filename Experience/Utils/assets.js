@@ -2,31 +2,57 @@ export default [
     {
         name: "gallery",
         type: "glbModel",
-        path: "/Models/Gallery.glb",
+        path: "/Models/trees.glb",
     },
     {
         name: "galleryBake",
         type: "texture",
-        path: "/Textures/BackgroundScene.jpg",
+        path: "/Textures/trees.png",
     },
     {
-        name: "image1",
-        type: "texture",
-        path: "/Textures/Image1Baked.jpg",
+        name: "floor",
+        type: "glbModel",
+        path: "/Models/kfloor.glb",
     },
     {
-        name: "image4",
+        name: "floorTexture",
         type: "texture",
-        path: "/Textures/Image4Baked.jpg",
+        path: "/Textures/ktexture.jpg",
     },
     {
-        name: "image7",
-        type: "texture",
-        path: "/Textures/Image7Baked.jpg",
+        name: "grass",
+        type: "glbModel",
+        path: "/Models/nowgrass.glb",
     },
     {
-        name: "image10",
+        name: "grassTexture",
         type: "texture",
-        path: "/Textures/Image10Baked.jpg",
+        path: "/Textures/nowgrass.jpg",
+    },
+    {
+        name: "rest",
+        type: "glbModel",
+        path: "/Models/plzwork.glb",
+    },
+    {
+        name: "restTexture",
+        type: "texture",
+        path: "/Textures/plzwork.jpg",
+    },
+    {
+        name: "char",
+        type: "glbModel",
+        path: "/Models/character.glb",
+    },
+
+    {
+        name: "charTexture",
+        type: "texture",
+        path: "/Textures/lezgochar.jpg",
+    },
+    {
+        name: "pics",
+        type: "glbModel",
+        path: "/Models/pictures.glb",
     },
 ];

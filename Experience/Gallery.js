@@ -7,6 +7,11 @@ export default class Gallery {
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
         this.resource = this.resources.items.gallery;
+        this.resource2 = this.resources.items.floor;
+        this.resource3 = this.resources.items.grass;
+        this.resource4 = this.resources.items.rest;
+        this.resource5 = this.resources.items.char;
+        this.resource6 = this.resources.items.pics;
 
         this.setModel();
     }
@@ -24,41 +29,63 @@ export default class Gallery {
             // console.log(child);
         });
 
-        const imageOne = this.model.children.find(
-            (child) => child.name === "Image1"
-        );
-        imageOne.material = new THREE.MeshBasicMaterial({
-            map: this.resources.items.image1,
+        this.model2 = this.resource2.scene;
+        console.log(this.model2);
+        this.materialtwo = this.resources.items.floorTexture;
+        console.log(this.materialtwo);
+
+        this.materialtwo.flipY = false;
+        this.materialtwo.encoding = THREE.sRGBEncoding;
+
+        this.model2.children.find((child) => {
+            child.material = new THREE.MeshBasicMaterial({
+                map: this.materialtwo,
+            });
+            // console.log(child);
         });
 
-        this.resources.items.image1.flipY = false;
+        this.model3 = this.resource3.scene;
+        console.log(this.model3);
+        this.materialThree = this.resources.items.grassTexture;
+        console.log(this.materialThree);
 
-        const wallOne = this.model.children.find(
-            (child) => child.name === "Wall1"
-        );
-        wallOne.material = new THREE.MeshBasicMaterial({
-            map: this.resources.items.image10,
+        this.materialThree.flipY = false;
+        this.materialThree.encoding = THREE.sRGBEncoding;
+
+        this.model3.children.find((child) => {
+            child.material = new THREE.MeshBasicMaterial({
+                map: this.materialThree,
+            });
+            // console.log(child);
         });
 
-        this.resources.items.image10.flipY = false;
+        this.model4 = this.resource4.scene;
+        this.materialFour = this.resources.items.restTexture;
 
-        const imageTwo = this.model.children.find(
-            (child) => child.name === "Image2"
-        );
-        imageTwo.material = new THREE.MeshBasicMaterial({
-            map: this.resources.items.image4,
+        this.materialFour.flipY = false;
+        this.materialFour.encoding = THREE.sRGBEncoding;
+
+        this.model4.children.find((child) => {
+            child.material = new THREE.MeshBasicMaterial({
+                map: this.materialFour,
+            });
+            // console.log(child);
         });
 
-        this.resources.items.image4.flipY = false;
+        this.model5 = this.resource5.scene;
+        this.materialFive = this.resources.items.charTexture;
 
-        const imageThree = this.model.children.find(
-            (child) => child.name === "Image3"
-        );
-        imageThree.material = new THREE.MeshBasicMaterial({
-            map: this.resources.items.image7,
+        this.materialFive.flipY = false;
+        this.materialFive.encoding = THREE.sRGBEncoding;
+
+        this.model5.children.find((child) => {
+            child.material = new THREE.MeshBasicMaterial({
+                map: this.materialFive,
+            });
+            // console.log(child);
         });
 
-        this.resources.items.image7.flipY = false;
+        this.model6 = this.resource6.scene;
 
         const size = 100;
         const divisions = 100;
@@ -69,8 +96,16 @@ export default class Gallery {
         // this.experience.scene.add(axesHelper);
         // this.experience.scene.add(gridHelper);
 
-        // this.model.scale.set(0.3, 0.3, 0.3);
+        // this.model.scale.set(2, 2, 2);
+        // this.model2.scale.set(2, 2, 2);
 
-        this.scene.add(this.model);
+        this.scene.add(
+            this.model,
+            this.model2,
+            this.model3,
+            this.model4,
+            this.model5,
+            this.model6
+        );
     }
 }

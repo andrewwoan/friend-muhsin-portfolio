@@ -26,7 +26,7 @@ export default class Experience {
         this.renderer = new Renderer();
         this.time = new Time();
         this.world = new World();
-        this.controls = new Controls();
+        // this.controls = new Controls();
         // this.raycaster = new Raycaster();
 
         this.sizes.on("resize", () => {
@@ -45,7 +45,7 @@ export default class Experience {
     update() {
         this.camera.update();
         this.renderer.update();
-        this.controls.update();
+        // this.controls.update();
         this.world.update();
         // this.raycaster.update();
     }
