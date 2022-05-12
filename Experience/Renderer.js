@@ -18,22 +18,39 @@ export default class Renderer {
             antialias: true,
         });
 
-        // this.renderer.physicallyCorrectLights = true;
         this.renderer.outputEncoding = THREE.sRGBEncoding;
-        // this.renderer.toneMapping = THREE.CineonToneMapping;
-        // this.renderer.toneMappingExposure = 1.75;
-        // this.renderer.shadowMap.enabled = true;
-        // this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
     }
     resize() {
-        this.renderer.setSize(this.sizes.width2, this.sizes.height2);
+        this.renderer.setSize(this.sizes.width, this.sizes.height);
         // console.log(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
     }
 
     update() {
+        // this.renderer.setScissorTest(true);
+        // this.renderer.setScissor(0, 0, this.sizes.width, this.sizes.height);
+        this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height);
         this.renderer.render(this.scene, this.camera.camera);
+        // this.renderer.setScissorTest(false);
+
+        this.renderer.setScissorTest(true);
+        this.renderer.setViewport(
+            this.sizes.width - this.sizes.width / 2 - 16,
+            this.sizes.height - this.sizes.height / 2 - 16,
+            this.sizes.width / 2,
+            this.sizes.height / 2
+        );
+
+        this.renderer.setScissor(
+            this.sizes.width - this.sizes.width / 2 - 16,
+            this.sizes.height - this.sizes.height / 2 - 16,
+            this.sizes.width / 2,
+            this.sizes.height / 2
+        );
+
+        this.renderer.render(this.scene, this.camera.camera2);
+        this.renderer.setScissorTest(false);
     }
 }

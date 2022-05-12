@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import EventEmitter from "./EventEmitter";
+import { EventEmitter } from "events";
 
 export default class Resources extends EventEmitter {
     constructor(assets) {
@@ -41,7 +41,7 @@ export default class Resources extends EventEmitter {
         this.loaded++;
         if (this.loaded === this.queue) {
             console.log("finished");
-            this.trigger("ready");
+            this.emit("ready");
         }
     }
 }

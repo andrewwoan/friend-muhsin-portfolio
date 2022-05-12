@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import EventEmitter from "./Utils/EventEmitter";
+import { EventEmitter } from "events";
 import Experience from "./Experience";
 import gsap from "gsap";
 

@@ -30,9 +30,7 @@ export default class Gallery {
         });
 
         this.model2 = this.resource2.scene;
-        console.log(this.model2);
         this.materialtwo = this.resources.items.floorTexture;
-        console.log(this.materialtwo);
 
         this.materialtwo.flipY = false;
         this.materialtwo.encoding = THREE.sRGBEncoding;
@@ -45,9 +43,7 @@ export default class Gallery {
         });
 
         this.model3 = this.resource3.scene;
-        console.log(this.model3);
         this.materialThree = this.resources.items.grassTexture;
-        console.log(this.materialThree);
 
         this.materialThree.flipY = false;
         this.materialThree.encoding = THREE.sRGBEncoding;
@@ -92,9 +88,9 @@ export default class Gallery {
 
         const gridHelper = new THREE.GridHelper(size, divisions);
 
-        const axesHelper = new THREE.AxesHelper(100);
-        // this.experience.scene.add(axesHelper);
-        // this.experience.scene.add(gridHelper);
+        const axesHelper = new THREE.AxesHelper(1000);
+        this.experience.scene.add(axesHelper);
+        this.experience.scene.add(gridHelper);
 
         // this.model.scale.set(2, 2, 2);
         // this.model2.scale.set(2, 2, 2);

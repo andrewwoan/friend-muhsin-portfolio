@@ -8,16 +8,17 @@ export default class World {
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
+        this.camera = this.experience.camera;
 
         this.resources.on("ready", () => {
             this.gallery = new Gallery();
-            this.raycaster = new Raycaster();
+            this.camera.setCamera();
         });
     }
 
     update() {
         if (this.raycaster) {
-            this.raycaster.update();
+            // this.raycaster.update();
         }
     }
 }
