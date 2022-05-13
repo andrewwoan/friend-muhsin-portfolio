@@ -10,7 +10,6 @@ export default class Gallery {
         this.resource2 = this.resources.items.floor;
         this.resource3 = this.resources.items.grass;
         this.resource4 = this.resources.items.rest;
-        this.resource5 = this.resources.items.char;
         this.resource6 = this.resources.items.pics;
 
         this.setModel();
@@ -68,19 +67,6 @@ export default class Gallery {
             // console.log(child);
         });
 
-        this.model5 = this.resource5.scene;
-        this.materialFive = this.resources.items.charTexture;
-
-        this.materialFive.flipY = false;
-        this.materialFive.encoding = THREE.sRGBEncoding;
-
-        this.model5.children.find((child) => {
-            child.material = new THREE.MeshBasicMaterial({
-                map: this.materialFive,
-            });
-            // console.log(child);
-        });
-
         this.model6 = this.resource6.scene;
 
         const size = 100;
@@ -100,7 +86,6 @@ export default class Gallery {
             this.model2,
             this.model3,
             this.model4,
-            this.model5,
             this.model6
         );
     }

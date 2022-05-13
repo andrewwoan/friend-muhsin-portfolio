@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Experience from "./Experience.js";
 import Gallery from "./Gallery.js";
+import Character from "./Character.js";
 import Raycaster from "./Raycaster.js";
 
 export default class World {
@@ -12,6 +13,7 @@ export default class World {
 
         this.resources.on("ready", () => {
             this.gallery = new Gallery();
+            this.character = new Character();
             this.camera.setCamera();
         });
     }
@@ -19,6 +21,9 @@ export default class World {
     update() {
         if (this.raycaster) {
             // this.raycaster.update();
+        }
+        if (this.character) {
+            this.character.update();
         }
     }
 }

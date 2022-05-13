@@ -9,7 +9,7 @@ export default class Camera {
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
-        this.gui = new GUI();
+        // this.gui = new GUI();
 
         this.createCamera();
         this.setOrbitControls();
@@ -63,22 +63,15 @@ export default class Camera {
         this.helper.position.copy(this.camera2.position);
         this.helper.rotation.copy(this.camera2.rotation);
 
-        // console.log(this.camera2);
-        console.log(
-            this.camera2.left,
-            this.camera2.right,
-            this.camera2.top,
-            this.camera2.bottom
-        );
         this.counter = 0;
 
-        this.gui.add(this.camera2.rotation, "x", 0, 6.3);
-        this.gui.add(this.camera2.rotation, "y", 0, 6.3);
-        this.gui.add(this.camera2.rotation, "z", 0, 6.3);
+        // this.gui.add(this.camera2.rotation, "x", 0, 6.3);
+        // this.gui.add(this.camera2.rotation, "y", 0, 6.3);
+        // this.gui.add(this.camera2.rotation, "z", 0, 6.3);
 
-        this.gui.add(this.camera2.position, "x", -200, 200);
-        this.gui.add(this.camera2.position, "y", -200, 200);
-        this.gui.add(this.camera2.position, "z", -200, 200);
+        // this.gui.add(this.camera2.position, "x", -200, 200);
+        // this.gui.add(this.camera2.position, "y", -200, 200);
+        // this.gui.add(this.camera2.position, "z", -200, 200);
     }
 
     resize() {
@@ -89,8 +82,11 @@ export default class Camera {
         this.camera2.updateProjectionMatrix();
     }
 
+    // setFollow() {
+    //     this.follow = true;
+    // }
+
     update() {
-        this.counter += 0.005;
         // this.camera2.rotation.y =
         //     ((Math.sin(this.counter) + 1) / 2) * (Math.PI * 2);
 
