@@ -3,6 +3,7 @@ import Experience from "./Experience.js";
 import Gallery from "./Gallery.js";
 import Character from "./Character.js";
 import Raycaster from "./Raycaster.js";
+import Physics from "./Physics.js";
 
 export default class World {
     constructor() {
@@ -14,6 +15,7 @@ export default class World {
         this.resources.on("ready", () => {
             this.gallery = new Gallery();
             this.character = new Character();
+            this.physics = new Physics();
             this.camera.setCamera();
         });
     }
@@ -24,6 +26,9 @@ export default class World {
         }
         if (this.character) {
             this.character.update();
+        }
+        if (this.physics) {
+            this.physics.update();
         }
     }
 }

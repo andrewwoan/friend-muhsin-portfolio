@@ -10,7 +10,7 @@ export default class Character {
         this.resources = this.experience.resources;
         this.resource = this.resources.items.char;
         this.setModel();
-        this.setControls();
+        // this.setControls();
     }
 
     update() {
@@ -57,239 +57,239 @@ export default class Character {
         this.scene.add(this.model);
     }
 
-    async onKeyDown(event) {
-        this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
-        // console.log(event.key);
-        if (event.key === "w") {
-            if (this.optimalW === true) {
-                await new Promise((resolve) => {
-                    this.optimalA = true;
-                    this.optimalW = false;
-                    this.t1.to(this.character.rotation, {
-                        y: Math.PI * 2,
-                        duration: 0.2,
-                    });
+    // async onKeyDown(event) {
+    //     this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+    //     console.log(event.key);
+    //     if (event.key === "w" || event.key === "ArrowUp") {
+    //         if (this.optimalW === true) {
+    //             await new Promise((resolve) => {
+    //                 this.optimalA = true;
+    //                 this.optimalW = false;
+    //                 this.t1.to(this.character.rotation, {
+    //                     y: Math.PI * 2,
+    //                     duration: 0.2,
+    //                 });
 
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            x: this.character.position.x - 4,
-                            duration: 0.2,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 4,
-                            duration: 0.1,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 0.7536406517028809,
-                            duration: 0.1,
-                            onComplete: resolve,
-                        },
-                        "-=0.1"
-                    );
-                });
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         x: this.character.position.x - 4,
+    //                         duration: 0.2,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 4,
+    //                         duration: 0.1,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 0.7536406517028809,
+    //                         duration: 0.1,
+    //                         onComplete: resolve,
+    //                     },
+    //                     "-=0.1"
+    //                 );
+    //             });
 
-                this.character.rotation.y = 0;
-            } else {
-                await new Promise((resolve) => {
-                    this.optimalA = true;
-                    this.optimalW = false;
-                    this.t1.to(this.character.rotation, {
-                        y: 0,
-                        duration: 0.2,
-                    });
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            x: this.character.position.x - 4,
-                            duration: 0.2,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 4,
-                            duration: 0.1,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 0.7536406517028809,
-                            duration: 0.1,
-                            onComplete: resolve,
-                        },
-                        "-=0.1"
-                    );
-                });
-            }
-        } else if (event.key === "a") {
-            if (this.optimalA) {
-                await new Promise((resolve) => {
-                    this.optimalW = true;
-                    this.optimalA = false;
-                    this.t1.fromTo(
-                        this.character.rotation,
-                        {
-                            y: Math.PI * 2,
-                            duration: 0.2,
-                        },
-                        {
-                            y: (3 * Math.PI) / 2,
-                            duration: 0.2,
-                        }
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            z: this.character.position.z + 4,
-                            duration: 0.2,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 4,
-                            duration: 0.1,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 0.7536406517028809,
-                            duration: 0.1,
-                            onComplete: resolve,
-                        },
-                        "-=0.1"
-                    );
-                });
-            } else {
-                await new Promise((resolve) => {
-                    this.optimalW = true;
-                    this.optimalA = false;
+    //             this.character.rotation.y = 0;
+    //         } else {
+    //             await new Promise((resolve) => {
+    //                 this.optimalA = true;
+    //                 this.optimalW = false;
+    //                 this.t1.to(this.character.rotation, {
+    //                     y: 0,
+    //                     duration: 0.2,
+    //                 });
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         x: this.character.position.x - 4,
+    //                         duration: 0.2,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 4,
+    //                         duration: 0.1,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 0.7536406517028809,
+    //                         duration: 0.1,
+    //                         onComplete: resolve,
+    //                     },
+    //                     "-=0.1"
+    //                 );
+    //             });
+    //         }
+    //     } else if (event.key === "a" || event.key === "ArrowLeft") {
+    //         if (this.optimalA) {
+    //             await new Promise((resolve) => {
+    //                 this.optimalW = true;
+    //                 this.optimalA = false;
+    //                 this.t1.fromTo(
+    //                     this.character.rotation,
+    //                     {
+    //                         y: Math.PI * 2,
+    //                         duration: 0.2,
+    //                     },
+    //                     {
+    //                         y: (3 * Math.PI) / 2,
+    //                         duration: 0.2,
+    //                     }
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         z: this.character.position.z + 4,
+    //                         duration: 0.2,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 4,
+    //                         duration: 0.1,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 0.7536406517028809,
+    //                         duration: 0.1,
+    //                         onComplete: resolve,
+    //                     },
+    //                     "-=0.1"
+    //                 );
+    //             });
+    //         } else {
+    //             await new Promise((resolve) => {
+    //                 this.optimalW = true;
+    //                 this.optimalA = false;
 
-                    this.t1.to(this.character.rotation, {
-                        y: (3 * Math.PI) / 2,
-                        duration: 0.2,
-                    });
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            z: this.character.position.z + 4,
-                            duration: 0.2,
-                        },
-                        "-=0.2"
-                    );
+    //                 this.t1.to(this.character.rotation, {
+    //                     y: (3 * Math.PI) / 2,
+    //                     duration: 0.2,
+    //                 });
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         z: this.character.position.z + 4,
+    //                         duration: 0.2,
+    //                     },
+    //                     "-=0.2"
+    //                 );
 
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 4,
-                            duration: 0.1,
-                        },
-                        "-=0.2"
-                    );
-                    this.t1.to(
-                        this.character.position,
-                        {
-                            y: 0.7536406517028809,
-                            duration: 0.1,
-                            onComplete: resolve,
-                        },
-                        "-=0.1"
-                    );
-                });
-            }
-        } else if (event.key === "s") {
-            await new Promise((resolve) => {
-                this.optimalW = false;
-                this.optimalA = false;
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 4,
+    //                         duration: 0.1,
+    //                     },
+    //                     "-=0.2"
+    //                 );
+    //                 this.t1.to(
+    //                     this.character.position,
+    //                     {
+    //                         y: 0.7536406517028809,
+    //                         duration: 0.1,
+    //                         onComplete: resolve,
+    //                     },
+    //                     "-=0.1"
+    //                 );
+    //             });
+    //         }
+    //     } else if (event.key === "s" || event.key === "ArrowDown") {
+    //         await new Promise((resolve) => {
+    //             this.optimalW = false;
+    //             this.optimalA = false;
 
-                this.t1.to(this.character.rotation, {
-                    y: Math.PI,
-                    duration: 0.2,
-                });
-                this.t1.to(
-                    this.character.position,
-                    {
-                        x: this.character.position.x + 4,
-                        duration: 0.2,
-                    },
-                    "-=0.2"
-                );
-                this.t1.to(
-                    this.character.position,
-                    {
-                        y: 4,
-                        duration: 0.1,
-                    },
-                    "-=0.2"
-                );
-                this.t1.to(
-                    this.character.position,
-                    {
-                        y: 0.7536406517028809,
-                        duration: 0.1,
-                        onComplete: resolve,
-                    },
-                    "-=0.1"
-                );
-            });
-        } else if (event.key === "d") {
-            await new Promise((resolve) => {
-                this.optimalW = false;
-                this.optimalA = false;
+    //             this.t1.to(this.character.rotation, {
+    //                 y: Math.PI,
+    //                 duration: 0.2,
+    //             });
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     x: this.character.position.x + 4,
+    //                     duration: 0.2,
+    //                 },
+    //                 "-=0.2"
+    //             );
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     y: 4,
+    //                     duration: 0.1,
+    //                 },
+    //                 "-=0.2"
+    //             );
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     y: 0.7536406517028809,
+    //                     duration: 0.1,
+    //                     onComplete: resolve,
+    //                 },
+    //                 "-=0.1"
+    //             );
+    //         });
+    //     } else if (event.key === "d" || event.key === "ArrowRight") {
+    //         await new Promise((resolve) => {
+    //             this.optimalW = false;
+    //             this.optimalA = false;
 
-                this.t1.to(this.character.rotation, {
-                    y: Math.PI / 2,
-                    duration: 0.2,
-                });
-                this.t1.to(
-                    this.character.position,
-                    {
-                        z: this.character.position.z - 4,
-                        duration: 0.2,
-                    },
-                    "-=0.2"
-                );
-                this.t1.to(
-                    this.character.position,
-                    {
-                        y: 4,
-                        duration: 0.1,
-                    },
-                    "-=0.2"
-                );
-                this.t1.to(
-                    this.character.position,
-                    {
-                        y: 0.7536406517028809,
-                        duration: 0.1,
-                        onComplete: resolve,
-                    },
-                    "-=0.1"
-                );
-            });
-        }
-        // console.log(this.character.rotation);
-    }
+    //             this.t1.to(this.character.rotation, {
+    //                 y: Math.PI / 2,
+    //                 duration: 0.2,
+    //             });
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     z: this.character.position.z - 4,
+    //                     duration: 0.2,
+    //                 },
+    //                 "-=0.2"
+    //             );
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     y: 4,
+    //                     duration: 0.1,
+    //                 },
+    //                 "-=0.2"
+    //             );
+    //             this.t1.to(
+    //                 this.character.position,
+    //                 {
+    //                     y: 0.7536406517028809,
+    //                     duration: 0.1,
+    //                     onComplete: resolve,
+    //                 },
+    //                 "-=0.1"
+    //             );
+    //         });
+    //     }
+    //     // console.log(this.character.rotation);
+    // }
 
-    setControls() {
-        this.optimalW = false;
-        this.optimalA = true;
+    // setControls() {
+    //     this.optimalW = false;
+    //     this.optimalA = true;
 
-        window.addEventListener("keydown", this.onKeyDown.bind(this));
-    }
+    //     window.addEventListener("keydown", this.onKeyDown.bind(this));
+    // }
 }
