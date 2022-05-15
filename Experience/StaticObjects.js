@@ -85,17 +85,22 @@ export default class StaticObjects {
 
         this.model6 = this.resource6.scene;
 
-        const size = 100;
-        const divisions = 100;
+        // const size = 100;
+        // const divisions = 100;
 
-        const gridHelper = new THREE.GridHelper(size, divisions);
+        // const gridHelper = new THREE.GridHelper(size, divisions);
 
-        const axesHelper = new THREE.AxesHelper(1000);
-        this.experience.scene.add(axesHelper);
-        this.experience.scene.add(gridHelper);
+        // const axesHelper = new THREE.AxesHelper(1000);
+        // this.experience.scene.add(axesHelper);
+        // this.experience.scene.add(gridHelper);
 
         // this.model.scale.set(2, 2, 2);
         // this.model2.scale.set(2, 2, 2);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        this.cube = new THREE.Mesh(geometry, material);
+        this.scene.add(this.cube);
 
         this.scene.add(
             this.model,

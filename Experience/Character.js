@@ -20,8 +20,9 @@ export default class Character {
     }
 
     update() {
-        this.camera.camera2.position.x = this.character.position.x + 40;
-        this.camera.camera2.position.z = this.character.position.z - 40;
+        // this.shadow.position.copy(this.character.position);
+        this.camera.camera.position.x = this.character.position.x + 40;
+        this.camera.camera.position.z = this.character.position.z - 40;
         console.log(this.character.position.x, this.character.position.z);
     }
 
@@ -38,31 +39,6 @@ export default class Character {
         });
 
         this.character = this.model.children[0];
-
-        // dummy vectors
-        // this.leftEmpty = new THREE.Vector3(
-        //     this.character.position.x,
-        //     this.character.position.y,
-        //     this.character.position.z + 20
-        // );
-        // this.rightEmpty = new THREE.Vector3(
-        //     this.character.position.x,
-        //     this.character.position.y,
-        //     this.character.position.z - 20
-        // );
-        // this.forwardEmpty = new THREE.Vector3(
-        //     this.character.position.x - 20,
-        //     this.character.position.y,
-        //     this.character.position.z
-        // );
-        // this.backEmpty = new THREE.Vector3(
-        //     this.character.position.x + 20,
-        //     this.character.position.y,
-        //     this.character.position.z
-        // );
-
-        // this.character.position.x = 0;
-        // this.character.position.z = 0;
 
         this.scene.add(this.model);
     }
