@@ -318,3 +318,208 @@
 
 //     }
 // }
+
+//  ---------------------------------------------------------------- 323
+
+// import * as THREE from "three";
+// import Experience from "./Experience.js";
+// import GSAP from "gsap";
+
+// export default class Character {
+//     constructor() {
+//         this.experience = new Experience();
+//         this.scene = this.experience.scene;
+//         this.camera = this.experience.camera;
+//         this.resources = this.experience.resources;
+//         this.resource = this.resources.items.char;
+//         this.yAxis = new THREE.Vector3(0, 1, 0);
+
+//         this.setModel();
+//         this.setControls();
+//     }
+
+//     update() {
+//         this.camera.camera2.position.x = this.character.position.x + 40;
+//         this.camera.camera2.position.z = this.character.position.z - 40;
+//     }
+
+//     setModel() {
+//         this.character = this.resource.scene;
+//         this.material = this.resources.items.charTexture;
+//         this.material.flipY = false;
+//         this.material.encoding = THREE.sRGBEncoding;
+
+//         this.character.children.find((child) => {
+//             child.material = new THREE.MeshBasicMaterial({
+//                 map: this.material,
+//             });
+//         });
+
+//         this.character.position.x = 100;
+//         this.character.position.z = 4;
+//         this.scene.add(this.character);
+//     }
+
+//     onKeyDown() {
+//         this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+//         this.step = { factor: 0 };
+
+//         this.rotationTarget = new THREE.Quaternion();
+
+//         if (event.key === "w" || event.key === "ArrowUp") {
+//             this.rotationTarget.setFromAxisAngle(this.yAxis, 0);
+
+//             this.t1.to(this.step, {
+//                 factor: 1,
+//                 duration: 0.2,
+//                 onUpdate: () => {
+//                     this.character.quaternion.slerp(this.rotationTarget, 0.1);
+//                 },
+//             });
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     x: this.character.position.x - 5,
+//                     duration: 0.2,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 5,
+//                     duration: 0.12,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 0.7536406517028809,
+//                     duration: 0.1,
+//                     onComplete: () => {},
+//                 },
+//                 "-=0.12"
+//             );
+//         } else if (event.key === "a" || event.key === "ArrowLeft") {
+//             this.rotationTarget.setFromAxisAngle(this.yAxis, Math.PI / 2);
+
+//             this.t1.to(this.step, {
+//                 factor: 1,
+//                 duration: 0.2,
+//                 onUpdate: () => {
+//                     this.character.quaternion.slerp(this.rotationTarget, 0.1);
+//                 },
+//             });
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     z: this.character.position.z + 5,
+//                     duration: 0.2,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 5,
+//                     duration: 0.1,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 0.7536406517028809,
+//                     duration: 0.1,
+//                 },
+//                 "-=0.1"
+//             );
+//         } else if (event.key === "s" || event.key === "ArrowDown") {
+//             this.targetRot = new THREE.Quaternion().setFromEuler(
+//                 new THREE.Euler(0, Math.PI, 0)
+//             );
+//             this.t1.to(this.step, {
+//                 factor: 1,
+//                 duration: 0.2,
+//                 onUpdate: () => {
+//                     this.character.quaternion.slerpQuaternions(
+//                         this.initRot,
+//                         this.targetRot,
+//                         this.step.factor
+//                     );
+//                 },
+//             });
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     x: this.character.position.x + 5,
+//                     duration: 0.2,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 5,
+//                     duration: 0.1,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 0.7536406517028809,
+//                     duration: 0.1,
+//                     onComplete: () => {},
+//                 },
+//                 "-=0.1"
+//             );
+//         } else if (event.key === "d" || event.key === "ArrowRight") {
+//             this.targetRot = new THREE.Quaternion().setFromEuler(
+//                 new THREE.Euler(0, (3 * Math.PI) / 2, 0)
+//             );
+
+//             this.t1.to(this.step, {
+//                 factor: 1,
+//                 duration: 0.2,
+//                 onUpdate: () => {
+//                     this.character.quaternion.slerpQuaternions(
+//                         this.initRot,
+//                         this.targetRot,
+//                         this.step.factor
+//                     );
+//                 },
+//             });
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     z: this.character.position.z - 5,
+//                     duration: 0.2,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 5,
+//                     duration: 0.1,
+//                 },
+//                 "-=0.2"
+//             );
+//             this.t1.to(
+//                 this.character.position,
+//                 {
+//                     y: 0.7536406517028809,
+//                     duration: 0.1,
+//                     onComplete: () => {},
+//                 },
+//                 "-=0.1"
+//             );
+//         }
+//     }
+
+//     setControls() {
+//         window.addEventListener("keydown", this.onKeyDown.bind(this));
+//     }
+// }

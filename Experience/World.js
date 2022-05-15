@@ -3,6 +3,7 @@ import Experience from "./Experience.js";
 import StaticObjects from "./StaticObjects.js";
 import Character from "./Character.js";
 import Raycaster from "./Raycaster.js";
+// import Zones from "./Zones.js";
 
 export default class World {
     constructor() {
@@ -15,6 +16,7 @@ export default class World {
             this.character = new Character();
             this.staticObjects = new StaticObjects();
             this.camera.setCamera();
+            // this.zones = new Zones();
         });
     }
 
@@ -25,8 +27,11 @@ export default class World {
         if (this.character) {
             this.character.update();
         }
-        if (this.physics) {
-            this.physics.update();
-        }
+        // if (this.physics) {
+        //     this.physics.update();
+        // }
+        // if (this.zones) {
+        //     this.zones.update();
+        // }
     }
 }
