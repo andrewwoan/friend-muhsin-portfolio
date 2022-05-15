@@ -17,6 +17,31 @@ export default class Character {
         };
         this.setModel();
         this.setControls();
+        this.reset();
+    }
+
+    reset() {
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "r") {
+                this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+                this.t1.fromTo(
+                    this.character.position,
+                    {
+                        x: 105,
+                        z: 4,
+                        y: 100,
+                    },
+                    {
+                        x: 105,
+                        z: 4,
+                        y: 0.7536406517028809,
+                        duration: 1,
+                        ease: "bounce.out",
+                    },
+                    "-=0.2"
+                );
+            }
+        });
     }
 
     update() {
@@ -153,6 +178,23 @@ export default class Character {
                         },
                         "-=0.1"
                     );
+                    // this.t1.to(
+                    //     this.character.scale,
+                    //     {
+                    //         y: 1.05,
+                    //         duration: 0.1,
+                    //     },
+                    //     "-=0.2"
+                    // );
+                    // this.t1.to(
+                    //     this.character.scale,
+                    //     {
+                    //         y: 1,
+                    //         duration: 0.1,
+                    //         onComplete: resolve,
+                    //     },
+                    //     "-=0.1"
+                    // );
                 });
 
                 this.character.rotation.y = 0;

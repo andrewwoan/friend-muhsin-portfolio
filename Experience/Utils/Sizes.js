@@ -11,7 +11,6 @@ export default class Sizes extends EventEmitter {
 
         // this.width = this.experience.canvas.clientWidth;
         // this.height = this.experience.canvas.clientHeight;
-        console.log(this.width, this.height);
         this.pixelRatio = Math.min(window.devicePixelRatio, 2);
         this.aspect = this.width / this.height;
 
@@ -20,7 +19,8 @@ export default class Sizes extends EventEmitter {
             this.height = window.innerHeight;
             // console.log(this.width, this.height);
             this.aspect = this.width / this.height;
-            // this.pixelRatio = Math.min(window.devicePixelRatio, 2);
+
+            this.pixelRatio = Math.min(window.devicePixelRatio, 2);
 
             // From EventEmitter Class
             this.emit("resize");

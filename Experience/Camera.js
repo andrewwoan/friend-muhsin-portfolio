@@ -85,34 +85,16 @@ export default class Camera {
         this.camera.right = (this.sizes.aspect * this.sizes.frustrum) / 2;
         this.camera.bottom = -this.sizes.frustrum / 2;
         this.camera.top = this.sizes.frustrum / 2;
-        // this.camera.left = -this.sizes.width / 2;
-        // this.camera.right = this.sizes.width / 2;
-        // this.camera.bottom = -this.sizes.height / 2;
-        // this.camera.top = this.sizes.height / 2;
-        // this.camera.aspect = this.sizes.aspect;
-        // if (this.sizes.width / 2 / this.sizes.height / 2 > this.sizes.aspect) {
-        //     this.camera.right = this.sizes.width / 2;
-        //     this.camera.top = this.sizes.width / 2 / this.sizes.aspect;
-        // } else {
-        //     this.camera.top = this.sizes.height / 2;
-        //     this.camera.right = (this.sizes.height / 2) * this.sizes.aspect;
-        // }
-        // this.camera.bottom = -this.camera.top;
-        // this.camera.left = -this.camera.right;
-        // console.log(this.camera);
-        console.log(
-            this.camera.left,
-            this.camera.right,
-            this.camera.top,
-            this.camera.bottom
-        );
+
+        // console.log(
+        //     this.camera.left,
+        //     this.camera.right,
+        //     this.camera.top,
+        //     this.camera.bottom
+        // );
         this.camera.updateProjectionMatrix();
         // this.camera2.updateProjectionMatrix();
     }
-
-    // setFollow() {
-    //     this.follow = true;
-    // }
 
     update() {
         // this.camera2.rotation.y =
