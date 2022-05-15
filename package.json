@@ -11,7 +11,6 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
-    "cannon-es": "^0.19.0",
     "events": "^3.3.0",
     "gsap": "^3.9.1",
     "lil-gui": "^0.16.1",

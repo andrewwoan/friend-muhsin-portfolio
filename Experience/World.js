@@ -3,7 +3,6 @@ import Experience from "./Experience.js";
 import StaticObjects from "./StaticObjects.js";
 import Character from "./Character.js";
 import Raycaster from "./Raycaster.js";
-import Physics from "./Physics.js";
 
 export default class World {
     constructor() {
@@ -14,7 +13,6 @@ export default class World {
 
         this.resources.on("ready", () => {
             this.character = new Character();
-            this.physics = new Physics();
             this.staticObjects = new StaticObjects();
             this.camera.setCamera();
         });
