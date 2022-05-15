@@ -48,7 +48,6 @@ export default class Camera {
     setCamera() {
         this.helper.matrixWorldNeedsUpdate = true;
 
-        console.log(this.scene.children);
         this.player = this.scene.children[7].children[0];
 
         this.positionvector = new THREE.Vector3(130, 60, -40);

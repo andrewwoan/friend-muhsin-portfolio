@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import Experience from "./Experience.js";
 
-export default class Gallery {
+export default class StaticObjects {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
@@ -11,12 +11,28 @@ export default class Gallery {
         this.resource3 = this.resources.items.grass;
         this.resource4 = this.resources.items.rest;
         this.resource6 = this.resources.items.pics;
+        this.children = [];
 
         this.setModel();
+        this.setCars();
+    }
+
+    update() {
+        if (this.cars) {
+            if (this.cars[0].position.z > 115) {
+                this.cars[0].position.z = -115;
+            }
+            if (this.cars[1].position.z < -115) {
+                this.cars[1].position.z = 115;
+            }
+            this.cars[0].position.z += 0.4;
+            this.cars[1].position.z -= 0.4;
+        }
     }
 
     setModel() {
         this.model = this.resource.scene;
+        console.log(this.scene.children);
         this.material = this.resources.items.galleryBake;
         this.material.flipY = false;
         this.material.encoding = THREE.sRGBEncoding;
@@ -88,5 +104,19 @@ export default class Gallery {
             this.model4,
             this.model6
         );
+    }
+
+    setCars() {
+        this.scene.children.forEach((child) => {
+            if (child instanceof THREE.Group) {
+                this.children.push(child.children);
+            }
+        });
+
+        console.log(this.children);
+        this.cars = [];
+        this.cars.push(this.children[4][18]);
+        this.cars.push(this.children[4][19]);
+        console.log(this.cars);
     }
 }

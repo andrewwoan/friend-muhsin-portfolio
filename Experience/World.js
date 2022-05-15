@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import Experience from "./Experience.js";
-import Gallery from "./Gallery.js";
+import StaticObjects from "./StaticObjects.js";
 import Character from "./Character.js";
 import Raycaster from "./Raycaster.js";
 import Physics from "./Physics.js";
@@ -13,16 +13,16 @@ export default class World {
         this.camera = this.experience.camera;
 
         this.resources.on("ready", () => {
-            this.gallery = new Gallery();
             this.character = new Character();
             this.physics = new Physics();
+            this.staticObjects = new StaticObjects();
             this.camera.setCamera();
         });
     }
 
     update() {
-        if (this.raycaster) {
-            // this.raycaster.update();
+        if (this.staticObjects) {
+            this.staticObjects.update();
         }
         if (this.character) {
             this.character.update();
