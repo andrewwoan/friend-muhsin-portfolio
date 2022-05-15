@@ -19,7 +19,7 @@ ul{
     padding: 0;
 }
 
-a, li{
+a, .list-item{
     font-family: 'VT323';
     text-transform: uppercase;
     cursor: pointer;
@@ -27,6 +27,24 @@ a, li{
     font-size: 36px;
     text-decoration: none;
     color: white;
+}
+
+.source{
+    text-decoration: underline;
+    margin-top: 8px;
+}
+
+.tool-list{
+    list-style-type: square;
+    margin-left: 48px;
+}
+
+.tool-item{
+    margin-bottom: 8px;
+}
+
+.pad{
+    margin-top: 24px;
 }
 
 button{
@@ -37,6 +55,25 @@ button{
 
 .nothing{
     cursor: default;
+
+    font-family: 'VT323';
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 36px;
+    text-decoration: none;
+    color: white;
+}
+
+.close{
+    width: 30px;
+    height: 30px;
+    background-color:white;
+    border-radius: 4px;
+    border: 1px solid white;
+    position: absolute;
+    top: -2.5%;
+    right: -5%;
+    cursor: pointer;
 }
 
 svg:hover{
@@ -89,6 +126,52 @@ a:hover, .list-item:hover{
 }
 
 
+
+
+.content{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    color: white;
+    padding: 20px 30px;
+
+    background-color:#55CCFF;
+    border: 2px solid white;
+    border-radius: 2px;
+    max-height: 500px;
+
+    overflow-y: scroll;
+
+    transform: translate(-50%, -50%);
+}
+
+.description{
+    font-family: "VT323";
+    margin-top: 12px;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
 .hidden {
     display: none;
+}
+
+.date{
+    margin-bottom: 24px;
+}
+
+img{
+    width: 100%;
+}
+
+@media (max-width: 865px) {
+    .content{
+        padding: 10px 5px;
+        width: 95%;
+    }
+  
 }
