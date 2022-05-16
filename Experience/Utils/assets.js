@@ -53,6 +53,36 @@ export default [
     {
         name: "pics",
         type: "glbModel",
-        path: "/Models/pictures.glb",
+        path: "/Models/picsz.glb",
+    },
+    {
+        name: "wabtec",
+        type: "texture",
+        path: "/Textures/wabtec.jpg",
+    },
+    {
+        name: "cpu",
+        type: "texture",
+        path: "/Textures/cpu.jpg",
+    },
+    {
+        name: "jbod",
+        type: "texture",
+        path: "/Textures/jbod.jpg",
+    },
+    {
+        name: "sense",
+        type: "texture",
+        path: "/Textures/sense.jpg",
+    },
+    {
+        name: "vessel",
+        type: "texture",
+        path: "/Textures/vessel.jpg",
+    },
+    {
+        name: "space",
+        type: "texture",
+        path: "/Textures/space.jpg",
     },
 ];

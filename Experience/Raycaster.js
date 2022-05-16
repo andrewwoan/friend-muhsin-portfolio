@@ -15,18 +15,26 @@ export default class Raycaster extends EventEmitter {
         this.controls = this.experience.controls;
         this.resources = this.experience.resources.items.gallery.scene.children;
 
-        this.timeline = new gsap.timeline({
-            onReverseComplete: () => {
-                console.log("reversed");
-                this.controls.disableScrolling = false;
-            },
-        });
+        this.castedObjects = [];
 
-        this.backButton = document.querySelector(".back-btn");
-        this.backButton.addEventListener("click", this.backButtonAction);
-
-        this.castedObjects = this.resources.filter((child) => {
-            if (child.name !== "Wall1" && child.name !== "Background_Scene") {
+        this.scene.children.forEach((child) => {
+            if (child instanceof THREE.Group) {
+                child.children.forEach((entry) => {
+                    if (
+                        entry.name === "picture" ||
+                        entry.name === "picture1" ||
+                        entry.name === "picture2" ||
+                        entry.name === "picture3" ||
+                        entry.name === "picture4" ||
+                        entry.name === "picture5" ||
+                        entry.name === "linkedin" ||
+                        entry.name === "github" ||
+                        entry.name === "email" ||
+                        entry.name === "Cube097"
+                    ) {
+                        this.castedObjects.push(entry);
+                    }
+                });
                 return true;
             }
             return false;
@@ -34,32 +42,39 @@ export default class Raycaster extends EventEmitter {
 
         this.pointer = new THREE.Vector2();
         this.raycaster = new THREE.Raycaster();
+        console.log("casted objects");
 
-        // console.log(this.resources);
-        // this.update();
+        console.log(this.castedObjects);
+
+        this.menuBtn = document.querySelector(".menu-button");
+        this.nav = document.querySelector(".nav-menu");
+        this.content = document.querySelector(".content");
+        this.close = document.querySelector(".close");
+        this.listItems = document.querySelectorAll("hide");
+
+        this.setListeners();
+
         window.addEventListener("pointermove", this.onPointerMove);
         window.addEventListener("pointerdown", this.onPointerDown);
     }
 
-    backButtonAction = (event) => {
-        this.backButton.classList.add("hidden");
-        this.timeline.reverse();
-        this.timeline = new gsap.timeline({
-            onReverseComplete: () => {
-                console.log("reversed");
-                this.controls.disableScrolling = false;
-            },
+    setListeners() {
+        this.menuBtn.addEventListener("click", () => {
+            this.nav.classList.toggle("hidden");
+            this.content.classList.add("hidden");
         });
 
-        // this.timeline2 = new gsap.timeline();
-        // this.timeline2.to(this.camera.camera.position, {
-        //     duration: 1.2,
-        //     ease: "power3.inOut",
-        //     x: this.previousPosition.x,
-        //     y: this.previousPosition.y,
-        //     z: this.previousPosition.z,
-        // });
-    };
+        this.listItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                this.nav.classList.toggle("hidden");
+            });
+        });
+
+        this.close.addEventListener("click", () => {
+            this.nav.classList.toggle("hidden");
+            this.content.classList.add("hidden");
+        });
+    }
 
     onPointerMove = (event) => {
         // console.log(this.pointer);
@@ -69,32 +84,15 @@ export default class Raycaster extends EventEmitter {
 
     onPointerDown = (event) => {
         console.log(this.intersectionObject);
-        this.previousPosition = this.camera.camera.position;
         if (this.intersectionObject) {
-            this.controls.disableScrolling = true;
-            if (this.intersectionObject.object.name === "Image1") {
-                this.timeline.to(this.camera.camera.position, {
-                    duration: 1.2,
-                    ease: "power3.inOut",
-                    x: -6,
-                    y: 2.4,
-                    z: -1,
-                });
-                this.timeline.to(
-                    this.camera.camera.quaternion,
-                    {
-                        duration: 1.2,
-                        ease: "power3.inOut",
-                        _w: 0.7272833230199789,
-                        _x: -0.0000545534108256133,
-                        _y: 0.6863373532240103,
-                        _z: 0.000051482059893685924,
-                    },
-                    ">-1.2"
-                );
-                this.timeline.play(0);
+            if (this.intersectionObject.object.name === "linkedin") {
+                window.open("https://www.linkedin.com/in/muhsinwahi/");
+            } else if (this.intersectionObject.object.name === "email") {
+                window.open("mailto:muhsin.wahianwar@gmail.com");
+            } else if (this.intersectionObject.object.name === "github") {
+                window.open("https://github.com/giwl-21");
+            } else if (this.intersectionObject.object.name === "") {
             }
-            this.backButton.classList.remove("hidden");
         }
     };
 

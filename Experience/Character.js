@@ -47,8 +47,8 @@ export default class Character {
     update() {
         // this.shadow.position.copy(this.character.position);
         this.camera.camera.position.x = this.character.position.x + 40;
-        this.camera.camera.position.z = this.character.position.z - 40;
-        console.log(this.character.position.x, this.character.position.z);
+        this.camera.camera.position.z = this.character.position.z - 35;
+        // console.log(this.character.position.x, this.character.position.z);
     }
 
     setModel() {
@@ -131,7 +131,6 @@ export default class Character {
             this.zones.zone3 = false;
         }
 
-        console.log(this.zones.zone1);
         this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
         if (event.key === "w" || event.key === "ArrowUp") {
             if (this.optimalW === true) {

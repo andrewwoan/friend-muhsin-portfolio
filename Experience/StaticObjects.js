@@ -84,6 +84,55 @@ export default class StaticObjects {
         });
 
         this.model6 = this.resource6.scene;
+        this.materialSix = this.resources.items.wabtec;
+        this.materialSix.flipY = false;
+        this.materialSix.encoding = THREE.sRGBEncoding;
+
+        this.model6.children[0].material = new THREE.MeshBasicMaterial({
+            map: this.materialSix,
+        });
+
+        this.materialSeven = this.resources.items.cpu;
+        this.materialSeven.flipY = false;
+        this.materialSeven.encoding = THREE.sRGBEncoding;
+
+        this.model6.children[1].material = new THREE.MeshBasicMaterial({
+            map: this.materialSeven,
+        });
+
+        this.materialEight = this.resources.items.jbod;
+        this.materialEight.flipY = false;
+        this.materialEight.encoding = THREE.sRGBEncoding;
+
+        console.log(this.model6);
+
+        this.model6.children[2].material = new THREE.MeshBasicMaterial({
+            map: this.materialEight,
+        });
+
+        this.materialNine = this.resources.items.sense;
+        this.materialNine.flipY = false;
+        this.materialNine.encoding = THREE.sRGBEncoding;
+
+        this.model6.children[3].material = new THREE.MeshBasicMaterial({
+            map: this.materialNine,
+        });
+
+        this.materialTen = this.resources.items.vessel;
+        this.materialTen.flipY = false;
+        this.materialTen.encoding = THREE.sRGBEncoding;
+
+        this.materialEleven = this.resources.items.space;
+        this.materialEleven.flipY = false;
+        this.materialEleven.encoding = THREE.sRGBEncoding;
+
+        this.model6.children[4].material = new THREE.MeshBasicMaterial({
+            map: this.materialEleven,
+        });
+
+        this.model6.children[6].material = new THREE.MeshBasicMaterial({
+            map: this.materialTen,
+        });
 
         // const size = 100;
         // const divisions = 100;

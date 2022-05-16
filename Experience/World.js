@@ -16,6 +16,7 @@ export default class World {
             this.character = new Character();
             this.staticObjects = new StaticObjects();
             this.camera.setCamera();
+            this.raycaster = new Raycaster();
             // this.zones = new Zones();
         });
     }
@@ -27,9 +28,9 @@ export default class World {
         if (this.character) {
             this.character.update();
         }
-        // if (this.physics) {
-        //     this.physics.update();
-        // }
+        if (this.raycaster) {
+            this.raycaster.update();
+        }
         // if (this.zones) {
         //     this.zones.update();
         // }
