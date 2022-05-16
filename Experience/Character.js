@@ -19,22 +19,22 @@ export default class Character {
         this.setControls();
         this.reset();
 
-        this.addShadow();
+        // this.addShadow();
     }
 
-    addShadow() {
-        const geometry = new THREE.PlaneGeometry(3, 3);
-        const material = new THREE.MeshBasicMaterial({
-            color: 0x1f1f1f,
-            transparent: true,
-            opacity: 0.7,
-        });
-        this.shadow = new THREE.Mesh(geometry, material);
-        this.scene.add(this.shadow);
-        this.shadow.rotation.x = -Math.PI / 2;
-        this.shadow.position.y = 0.7536406517028809;
-        console.log(this.shadow.position);
-    }
+    // addShadow() {
+    //     const geometry = new THREE.PlaneGeometry(3, 3);
+    //     const material = new THREE.MeshBasicMaterial({
+    //         color: 0x1f1f1f,
+    //         transparent: true,
+    //         opacity: 0.7,
+    //     });
+    //     this.shadow = new THREE.Mesh(geometry, material);
+    //     this.scene.add(this.shadow);
+    //     this.shadow.rotation.x = -Math.PI / 2;
+    //     this.shadow.position.y = 0.7536406517028809;
+    //     console.log(this.shadow.position);
+    // }
 
     reset() {
         window.addEventListener("keydown", (event) => {
@@ -65,7 +65,7 @@ export default class Character {
         // this.shadow.position.z = this.character.position.z - 2;
         // this.shadow.position.y = this.character.position.y;
 
-        console.log(this.shadow.position);
+        // console.log(this.shadow.position);
 
         this.camera.camera.position.x = this.character.position.x + 40;
         this.camera.camera.position.z = this.character.position.z - 35;

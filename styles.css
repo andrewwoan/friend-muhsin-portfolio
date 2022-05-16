@@ -76,6 +76,10 @@ button{
     cursor: pointer;
 }
 
+
+
+
+
 svg:hover{
     border: 2px solid white;
 }
@@ -138,6 +142,7 @@ a:hover, .list-item:hover{
     left: 50%;
     color: white;
     padding: 20px 30px;
+    
 
     background-color:#55CCFF;
     border: 2px solid white;
@@ -147,6 +152,21 @@ a:hover, .list-item:hover{
     overflow-y: scroll;
 
     transform: translate(-50%, -50%);
+}
+
+.close-project{
+    width: 30px;
+    height: 30px;
+    background-color:white;
+    border-radius: 4px;
+    border: 1px solid white;
+    position: absolute;
+    top: 25%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+
+    z-index: 10000000;
+    cursor: pointer;
 }
 
 .description{

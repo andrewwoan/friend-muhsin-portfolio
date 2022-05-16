@@ -50,6 +50,7 @@ export default class Raycaster extends EventEmitter {
         this.nav = document.querySelector(".nav-menu");
         this.content = document.querySelector(".content");
         this.close = document.querySelector(".close");
+        this.closeProj = document.querySelector(".close-project");
         this.listItems = document.querySelectorAll("hide");
 
         this.setListeners();
@@ -62,6 +63,7 @@ export default class Raycaster extends EventEmitter {
         this.menuBtn.addEventListener("click", () => {
             this.nav.classList.toggle("hidden");
             this.content.classList.add("hidden");
+            this.closeProj.classList.add("hidden");
         });
 
         this.listItems.forEach((item) => {
@@ -71,8 +73,14 @@ export default class Raycaster extends EventEmitter {
         });
 
         this.close.addEventListener("click", () => {
-            this.nav.classList.toggle("hidden");
+            this.nav.classList.add("hidden");
             this.content.classList.add("hidden");
+            this.closeProj.classList.add("hidden");
+        });
+
+        this.closeProj.addEventListener("click", () => {
+            this.content.classList.add("hidden");
+            this.closeProj.classList.add("hidden");
         });
     }
 
@@ -91,7 +99,30 @@ export default class Raycaster extends EventEmitter {
                 window.open("mailto:muhsin.wahianwar@gmail.com");
             } else if (this.intersectionObject.object.name === "github") {
                 window.open("https://github.com/giwl-21");
-            } else if (this.intersectionObject.object.name === "") {
+            } else if (this.intersectionObject.object.name === "picture") {
+                this.content.classList.remove("hidden");
+                this.closeProj.classList.remove("hidden");
+                this.content.innerHTML = `
+               
+                <div class="title">OpenVessel</div>
+                <div class="date">Role: Intern | Summer 2020</div>
+                
+                <img src="./Textures/vessel.jpg" alt="" class="work-img">
+
+                <div class="description">OpenVessel is a startup that implements frameworks for machine learning on CT scans. I worked with OpenVessel's amazing team for three full months to build the prototype, from early June to when college resumed in August. In this time, I learned to implement a NodeJS environment and a routing framework into a full stack web application. Using this foundation, I constructed a 3D renderer for VTK files. Our prototype went on to win a $5000 grant from the Nittany AI Challenge. </div >
+                <div class="description">Working on this cutting edge product was especially difficult since open source tools combining web applications and medical data formats are relatively new and weakly documented. I found success in carving my own path by testing various libraries and building my products on an isolated environment mimicking the app's structure.
+                </div>
+
+                <div class="description">Not only have I developed my skills, but also the important aspects of collaboration that drives a team to move forward. I would like to give my thanks to Rishyak, Leslie, Greg, and the rest of the OpenVessel team for bringing out my best, and to Brad Zdenek for running such a great contest.
+                </div>
+
+                <div class="tools">
+                    <div class="title pad">Tools</div>
+                    <ul class="tool-list">
+                    <li class="tool-item">Visual Studio C#</li>
+                    <li class="tool-item">HTML</li>
+                    </ul>
+                `;
             }
         }
     };
