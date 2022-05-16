@@ -87,7 +87,9 @@ svg:hover{
 .title{
     font-family: 'Press Start 2P';
     margin-bottom: 12px;
+    margin-top: 12px;
     font-size: 24px;
+    line-height: 28px;
 }
 
 .title2{
@@ -96,7 +98,13 @@ svg:hover{
     font-size: 36px;
     line-height: 46px;
 }
-
+.bot{
+    margin-bottom: 24px;
+    line-height: 24px;
+}
+.play{
+    opacity: 0;
+}
 .menu-button{
     margin: 0;
     padding: 0;
@@ -136,6 +144,11 @@ a:hover, .list-item:hover{
     z-index: -1;
 }
 
+.play:hover{
+    border: none;
+    cursor: pointer;
+    transform: scale(0.95);
+}
 
 
 
@@ -201,6 +214,7 @@ a:hover, .list-item:hover{
 
 .date{
     margin-bottom: 24px;
+    line-height: 24px;
 }
 
 img{

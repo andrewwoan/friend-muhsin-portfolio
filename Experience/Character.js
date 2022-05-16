@@ -15,11 +15,35 @@ export default class Character {
             zone2: false,
             zone3: false,
         };
+        this.bounce();
         this.setModel();
         this.setControls();
         this.reset();
 
         // this.addShadow();
+    }
+
+    bounce() {
+        this.resources.on("bounce", () => {
+            this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+            this.t1.fromTo(
+                this.character.position,
+                {
+                    x: 105,
+                    z: 4,
+                    y: 100,
+                },
+                {
+                    x: 105,
+                    z: 4,
+                    y: 0.7536406517028809,
+                    duration: 1,
+                    delay: 0.2,
+                    ease: "bounce.out",
+                },
+                "-=0.2"
+            );
+        });
     }
 
     // addShadow() {

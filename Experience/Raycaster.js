@@ -303,8 +303,14 @@ export default class Raycaster extends EventEmitter {
             this.contentStuff.innerHTML = `
             <div class="title">Credits
             </div>
-            <li><a href="https://bruno-simon.com/">[LINK] Portfolio inspired by Bruno Simon's Portfolio</a></li>
-            <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome websites</a></li>
+            <li><a href="https://www.crossyroad.com/" target="_blank" rel="noopener noreferrer">[LINK] Theme inspired by Crossy Road </a></li>
+            <li><a href="https://bruno-simon.com/" target="_blank" rel="noopener noreferrer">[LINK] Interactions inspired by Bruno Simon's Portfolio</a></li>
+            <li><a href="https://threejs-journey.xyz/" target="_blank" rel="noopener noreferrer">[LINK] Check out Bruno's course to learn how to make awesome websites</a></li>
+            <div class="title">Technology Used
+            </div>
+            <li><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">[LINK] Figma - Design of portfolio and used to create SVGs </a></li>
+            <li><a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">[LINK] Blender - Used to create 3D models</a></li>
+            <li><a href="https://threejs.org/" target="_blank" rel="noopener noreferrer">[LINK] Three.js - JavaScript Library for WebGL</a></li>
              `;
         });
     }
@@ -529,11 +535,17 @@ export default class Raycaster extends EventEmitter {
                 this.content.classList.remove("hidden");
                 this.closeProj.classList.remove("hidden");
                 this.contentStuff.innerHTML = `
-                <div class="title">Credits
-                </div>
-                <li><a href="https://bruno-simon.com/">[LINK] Portfolio inspired by Bruno Simon's Portfolio</a></li>
-                <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome websites</a></li>
-                 `;
+            <div class="title">Credits
+            </div>
+            <li><a href="https://www.crossyroad.com/" target="_blank" rel="noopener noreferrer">[LINK] Theme inspired by Crossy Road </a></li>
+            <li><a href="https://bruno-simon.com/" target="_blank" rel="noopener noreferrer">[LINK] Interactions inspired by Bruno Simon's Portfolio</a></li>
+            <li><a href="https://threejs-journey.xyz/" target="_blank" rel="noopener noreferrer">[LINK] Check out Bruno's course to learn how to make awesome websites</a></li>
+            <div class="title">Technology Used
+            </div>
+            <li><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">[LINK] Figma - Design of portfolio and used to create SVGs </a></li>
+            <li><a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">[LINK] Blender - Used to create 3D models</a></li>
+            <li><a href="https://threejs.org/" target="_blank" rel="noopener noreferrer">[LINK] Three.js - JavaScript Library for WebGL</a></li>
+             `;
             }
         }
     };

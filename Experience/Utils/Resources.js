@@ -22,6 +22,18 @@ export default class Resources extends EventEmitter {
         this.bar = document.querySelector(".fill");
         this.text = document.querySelector(".text");
         this.progressBar = document.querySelector(".progress-bar");
+        this.play = document.querySelector(".play");
+        this.screen = document.querySelector(".loading-screen");
+
+        this.play.addEventListener("click", () => {
+            GSAP.set(this.screen, {
+                visibility: "hidden",
+            });
+            GSAP.set(this.play, {
+                visibility: "hidden",
+            });
+            this.emit("bounce");
+        });
     }
 
     setLoaders() {
@@ -58,12 +70,13 @@ export default class Resources extends EventEmitter {
         this.text;
 
         if (this.loaded === this.queue) {
-            console.log(this.progressBar);
-            GSAP.set(this.progressBar, {
+            this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+            this.t1.set(this.progressBar, {
                 delay: 0.7,
-                opacity: 0,
-                duration: 1,
-                ease: "none",
+                visibility: "hidden",
+            });
+            this.t1.set(this.play, {
+                opacity: 1,
             });
             this.emit("ready");
         }
