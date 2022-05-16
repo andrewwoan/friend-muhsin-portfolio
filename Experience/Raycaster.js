@@ -48,7 +48,8 @@ export default class Raycaster extends EventEmitter {
 
         this.menuBtn = document.querySelector(".menu-button");
         this.nav = document.querySelector(".nav-menu");
-        this.content = document.querySelector(".content");
+        this.content = document.querySelector(".content-wrapper");
+        this.contentStuff = document.querySelector(".content");
         this.close = document.querySelector(".close");
         this.closeProj = document.querySelector(".close-project");
         this.listItems = document.querySelectorAll("hide");
@@ -102,8 +103,7 @@ export default class Raycaster extends EventEmitter {
             } else if (this.intersectionObject.object.name === "picture") {
                 this.content.classList.remove("hidden");
                 this.closeProj.classList.remove("hidden");
-                this.content.innerHTML = `
-               
+                this.contentStuff.innerHTML = `
                 <div class="title">OpenVessel</div>
                 <div class="date">Role: Intern | Summer 2020</div>
                 
@@ -119,9 +119,58 @@ export default class Raycaster extends EventEmitter {
                 <div class="tools">
                     <div class="title pad">Tools</div>
                     <ul class="tool-list">
-                    <li class="tool-item">Visual Studio C#</li>
-                    <li class="tool-item">HTML</li>
+                        <li class="tool-item">JavaScript</li>
+                        <li class="tool-item">ECMAScript</li>
+                        <ul class="tool-list">
+                        <li class="tool-item">NPM & Node
+                        </li>
+                        <li class="tool-item">ReactJS</li>
+                        <li class="tool-item">Webpack</li>
+                        <li class="tool-item">VTK.js</li>
+                        </ul>
+                        <li class="tool-item">Python</li>
+                        <ul class="tool-list">
+                        <li class="tool-item">Flask
+                        </li>
+                        </ul>
                     </ul>
+                </div>
+                `;
+            } else if (this.intersectionObject.object.name === "picture1") {
+                this.content.classList.remove("hidden");
+                this.closeProj.classList.remove("hidden");
+                this.contentStuff.innerHTML = `
+                <div class="title">5th Sense</div>
+                <div class="date">Role: Developer | February - April 2021</div>
+                
+                <img src="./Textures/sense.jpg" alt="" class="work-img">
+                <div class="links">
+                    <a href="#" class="source">Source Code</a>
+                    <a href="#" class="source">Live</a>
+                </div>
+        
+                <div class="description">5th Sense is a real-time transcription mobile app which aims to separate text from speakers into a group-chat format. Our team submitted our app during the 2021 Nittany AI Challenge, finishing in the semi-finals (prototype phase) with 20 teams left. The application uses Microsoft Azure’s Speech-To-Text Recognizer API combined with their Speaker Identification API to simultaneously transcribe and identify speech. It’s constructed using React-Native, with JavaScript objects storing speech audio segments to identify and speech profiles to help identify the segments for classification. We planned to store this information in a phone using Firebase, but we just used the browser memory for this demo. The components come together to have real-time audio collection and speaker profile training while updating the front-end to display the labeled text from different speakers in a text message format.
+                </div>
+
+                <div class="tools">
+                    <div class="title pad">Tools</div>
+                    <ul class="tool-list">
+                        <li class="tool-item">JavaScript</li>
+                        <ul class="tool-list">
+                        <li class="tool-item">NPM & Node
+                        </li>
+                        <li class="tool-item">React Native
+                        </li>
+                        </ul>
+                        <li class="tool-item">Microsoft Azure                        </li>
+                        <ul class="tool-list">
+                        <li class="tool-item">Speaker Identification
+                        </li>
+                        <li class="tool-item">Speech Recognizer
+                        </li>
+                        </ul>
+                    </ul>
+                </div>
                 `;
             }
         }
