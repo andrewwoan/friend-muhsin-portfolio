@@ -90,6 +90,13 @@ svg:hover{
     font-size: 24px;
 }
 
+.title2{
+    font-family: 'Press Start 2P';
+    margin-bottom: 24px;
+    font-size: 36px;
+    line-height: 46px;
+}
+
 .menu-button{
     margin: 0;
     padding: 0;
@@ -205,5 +212,54 @@ img{
         padding: 10px 5px;
         width: 95%;
     }
+
+    /* .title2{
+        font-size: 16px;
+    } */
   
+}
+
+.loading-screen{
+    position: absolute;
+    z-index: 99999999;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #55CCFF;
+    border: 20px solid white;
+}
+
+.loading-wrapper{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.progress-bar{
+    width: 30%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center ;
+    text-align: center;
+    padding: 5px 5px;
+    overflow: visible;
+    opacity: 1;
+
+}
+
+.fill{
+    width: 0%;
+    height: 100%;
+    background-color: #55CCFF;
+}
+
+.text{
+    position: absolute;
 }

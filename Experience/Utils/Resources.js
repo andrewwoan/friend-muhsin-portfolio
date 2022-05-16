@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { EventEmitter } from "events";
+import GSAP from "gsap";
 
 export default class Resources extends EventEmitter {
     constructor(assets) {
@@ -12,8 +13,15 @@ export default class Resources extends EventEmitter {
         this.queue = this.assets.length;
         this.loaded = 0;
 
+        this.setPreloader();
         this.setLoaders();
         this.startLoading();
+    }
+
+    setPreloader() {
+        this.bar = document.querySelector(".fill");
+        this.text = document.querySelector(".text");
+        this.progressBar = document.querySelector(".progress-bar");
     }
 
     setLoaders() {
@@ -39,8 +47,24 @@ export default class Resources extends EventEmitter {
     singleAssetLoaded(asset, file) {
         this.items[asset.name] = file;
         this.loaded++;
+        this.bar.style.width = `${Math.round(
+            (this.loaded / this.queue) * 100
+        )}%`;
+        this.text.textContent = `${Math.round(
+            (this.loaded / this.queue) * 100
+        )}%`;
+        console.log(this.loaded / this.queue);
+        console.log(this.bar.style.width);
+        this.text;
+
         if (this.loaded === this.queue) {
-            console.log("finished");
+            console.log(this.progressBar);
+            GSAP.set(this.progressBar, {
+                delay: 0.7,
+                opacity: 0,
+                duration: 1,
+                ease: "none",
+            });
             this.emit("ready");
         }
     }

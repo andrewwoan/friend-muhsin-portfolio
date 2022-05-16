@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { EventEmitter } from "events";
 import Experience from "./Experience";
-import gsap from "gsap";
 
 export default class Raycaster extends EventEmitter {
     constructor() {
@@ -305,7 +304,7 @@ export default class Raycaster extends EventEmitter {
             <div class="title">Credits
             </div>
             <li><a href="https://bruno-simon.com/">[LINK] Portfolio inspired by Bruno Simon's Portfolio</a></li>
-            <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome 3D portfolios</a></li>
+            <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome websites</a></li>
              `;
         });
     }
@@ -533,7 +532,7 @@ export default class Raycaster extends EventEmitter {
                 <div class="title">Credits
                 </div>
                 <li><a href="https://bruno-simon.com/">[LINK] Portfolio inspired by Bruno Simon's Portfolio</a></li>
-                <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome 3D portfolios</a></li>
+                <li><a href="https://threejs-journey.xyz/">[LINK] Check out his course to learn how to make awesome websites</a></li>
                  `;
             }
         }
