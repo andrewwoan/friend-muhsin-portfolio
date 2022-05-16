@@ -18,6 +18,22 @@ export default class Character {
         this.setModel();
         this.setControls();
         this.reset();
+
+        this.addShadow();
+    }
+
+    addShadow() {
+        const geometry = new THREE.PlaneGeometry(3, 3);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x1f1f1f,
+            transparent: true,
+            opacity: 0.7,
+        });
+        this.shadow = new THREE.Mesh(geometry, material);
+        this.scene.add(this.shadow);
+        this.shadow.rotation.x = -Math.PI / 2;
+        this.shadow.position.y = 0.7536406517028809;
+        console.log(this.shadow.position);
     }
 
     reset() {
@@ -45,7 +61,12 @@ export default class Character {
     }
 
     update() {
-        // this.shadow.position.copy(this.character.position);
+        // this.shadow.position.x = this.character.position.x - 2;
+        // this.shadow.position.z = this.character.position.z - 2;
+        // this.shadow.position.y = this.character.position.y;
+
+        console.log(this.shadow.position);
+
         this.camera.camera.position.x = this.character.position.x + 40;
         this.camera.camera.position.z = this.character.position.z - 35;
         // console.log(this.character.position.x, this.character.position.z);
@@ -124,9 +145,9 @@ export default class Character {
 
         if (
             this.zones.zone3 &&
-            this.character.position.z < 0.934 &&
+            this.character.position.z < 2.8 &&
             this.character.position.z > -7.069 &&
-            this.character.position.x < -27
+            this.character.position.x < -24
         ) {
             this.zones.zone3 = false;
         }
