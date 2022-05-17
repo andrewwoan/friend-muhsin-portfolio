@@ -462,7 +462,7 @@ export default class Character {
         this.down = document.querySelector(".down");
         this.right = document.querySelector(".right");
 
-        this.up.addEventListener("touch", this.onUp.bind(this));
+        this.up.addEventListener("click", this.onUp.bind(this));
     }
 
     async onUp() {
