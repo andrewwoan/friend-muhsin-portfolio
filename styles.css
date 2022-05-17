@@ -99,6 +99,11 @@ svg:hover{
     line-height: 46px;
 }
 .bot{
+    margin-bottom: 4px;
+    line-height: 24px;
+}
+
+.bot2{
     margin-bottom: 24px;
     line-height: 24px;
 }
@@ -263,6 +268,7 @@ img{
     align-items: center ;
     text-align: center;
     padding: 5px 5px;
+    margin-top: 24px;
     overflow: visible;
     opacity: 1;
 
@@ -277,3 +283,28 @@ img{
 .text{
     position: absolute;
 }
+
+.mobile-controls{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 999;
+}
+
+.mobile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+gap: 12px;
+    align-items: center;
+}
+
+
+.left:hover, .right:hover, .up:hover, .down:hover{
+    border: none;
+    cursor: pointer;
+    transform: scale(0.95);
+}
+

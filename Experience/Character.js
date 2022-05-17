@@ -19,8 +19,6 @@ export default class Character {
         this.setModel();
         this.setControls();
         this.reset();
-
-        // this.addShadow();
     }
 
     bounce() {
@@ -85,15 +83,8 @@ export default class Character {
     }
 
     update() {
-        // this.shadow.position.x = this.character.position.x - 2;
-        // this.shadow.position.z = this.character.position.z - 2;
-        // this.shadow.position.y = this.character.position.y;
-
-        // console.log(this.shadow.position);
-
         this.camera.camera.position.x = this.character.position.x + 40;
         this.camera.camera.position.z = this.character.position.z - 35;
-        // console.log(this.character.position.x, this.character.position.z);
     }
 
     setModel() {
@@ -222,23 +213,6 @@ export default class Character {
                         },
                         "-=0.1"
                     );
-                    // this.t1.to(
-                    //     this.character.scale,
-                    //     {
-                    //         y: 1.05,
-                    //         duration: 0.1,
-                    //     },
-                    //     "-=0.2"
-                    // );
-                    // this.t1.to(
-                    //     this.character.scale,
-                    //     {
-                    //         y: 1,
-                    //         duration: 0.1,
-                    //         onComplete: resolve,
-                    //     },
-                    //     "-=0.1"
-                    // );
                 });
 
                 this.character.rotation.y = 0;
@@ -482,5 +456,167 @@ export default class Character {
         this.optimalA = true;
 
         window.addEventListener("keydown", this.onKeyDown.bind(this));
+
+        this.up = document.querySelector(".up");
+        this.left = document.querySelector(".left");
+        this.down = document.querySelector(".down");
+        this.right = document.querySelector(".right");
+
+        this.up.addEventListener("touch", this.onUp.bind(this));
+    }
+
+    async onUp() {
+        // Zone 1 logic
+        if (
+            this.character.position.x < 114 &&
+            this.character.position.x > 39 &&
+            ((this.character.position.z > -79 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 74 &&
+                    this.character.position.z > 0.934))
+        ) {
+            this.zones.zone1 = true;
+            this.zones.zone2 = false;
+            this.zones.zone3 = false;
+        }
+
+        if (
+            this.zones.zone1 &&
+            this.character.position.z < 0.934 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < 43
+        ) {
+            this.zones.zone1 = false;
+        }
+
+        // Zone 2 logic
+
+        if (
+            this.character.position.x < 37 &&
+            this.character.position.x > -26 &&
+            this.character.position.z > -6 &&
+            this.character.position.z < 5
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = true;
+            this.zones.zone3 = false;
+        } else {
+            this.zones.zone2 = false;
+        }
+
+        // Zone 3 logic
+
+        if (
+            this.character.position.x < -29 &&
+            this.character.position.x > -52 &&
+            ((this.character.position.z > -81 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 70 &&
+                    this.character.position.z > 1.6))
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = false;
+            this.zones.zone3 = true;
+        }
+
+        if (
+            this.zones.zone3 &&
+            this.character.position.z < 2.8 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < -24
+        ) {
+            this.zones.zone3 = false;
+        }
+
+        this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+        if (this.optimalW === true) {
+            await new Promise((resolve) => {
+                this.optimalA = true;
+                this.optimalW = false;
+                this.t1.to(this.character.rotation, {
+                    y: Math.PI * 2,
+                    duration: 0.2,
+                });
+
+                if (
+                    (this.zones.zone1 && this.character.position.x - 4 < 39) ||
+                    (this.zones.zone3 && this.character.position.x - 4 < -52)
+                ) {
+                    console.log("valid");
+                } else {
+                    this.t1.to(
+                        this.character.position,
+                        {
+                            x: this.character.position.x - 4,
+                            duration: 0.2,
+                        },
+                        "-=0.2"
+                    );
+                }
+
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 4,
+                        duration: 0.1,
+                    },
+                    "-=0.2"
+                );
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 0.7536406517028809,
+                        duration: 0.1,
+                        onComplete: resolve,
+                    },
+                    "-=0.1"
+                );
+            });
+
+            this.character.rotation.y = 0;
+        } else {
+            await new Promise((resolve) => {
+                this.optimalA = true;
+                this.optimalW = false;
+                this.t1.to(this.character.rotation, {
+                    y: 0,
+                    duration: 0.2,
+                });
+
+                if (
+                    (this.zones.zone1 && this.character.position.x - 4 < 39) ||
+                    (this.zones.zone3 && this.character.position.x - 4 < -52)
+                ) {
+                    console.log("valid");
+                } else {
+                    this.t1.to(
+                        this.character.position,
+                        {
+                            x: this.character.position.x - 4,
+                            duration: 0.2,
+                        },
+                        "-=0.2"
+                    );
+                }
+
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 4,
+                        duration: 0.1,
+                    },
+                    "-=0.2"
+                );
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 0.7536406517028809,
+                        duration: 0.1,
+                        onComplete: resolve,
+                    },
+                    "-=0.1"
+                );
+            });
+        }
     }
 }
