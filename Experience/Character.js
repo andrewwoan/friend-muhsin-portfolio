@@ -463,6 +463,385 @@ export default class Character {
         this.right = document.querySelector(".right");
 
         this.up.addEventListener("click", this.onUp.bind(this));
+        this.down.addEventListener("click", this.onDown.bind(this));
+        this.left.addEventListener("click", this.onLeft.bind(this));
+        this.right.addEventListener("click", this.onRight.bind(this));
+    }
+
+    async onRight() {
+        // Zone 1 logic
+        if (
+            this.character.position.x < 114 &&
+            this.character.position.x > 39 &&
+            ((this.character.position.z > -79 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 74 &&
+                    this.character.position.z > 0.934))
+        ) {
+            this.zones.zone1 = true;
+            this.zones.zone2 = false;
+            this.zones.zone3 = false;
+        }
+
+        if (
+            this.zones.zone1 &&
+            this.character.position.z < 0.934 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < 43
+        ) {
+            this.zones.zone1 = false;
+        }
+
+        // Zone 2 logic
+
+        if (
+            this.character.position.x < 37 &&
+            this.character.position.x > -26 &&
+            this.character.position.z > -6 &&
+            this.character.position.z < 5
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = true;
+            this.zones.zone3 = false;
+        } else {
+            this.zones.zone2 = false;
+        }
+
+        // Zone 3 logic
+
+        if (
+            this.character.position.x < -29 &&
+            this.character.position.x > -52 &&
+            ((this.character.position.z > -81 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 70 &&
+                    this.character.position.z > 1.6))
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = false;
+            this.zones.zone3 = true;
+        }
+
+        if (
+            this.zones.zone3 &&
+            this.character.position.z < 2.8 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < -24
+        ) {
+            this.zones.zone3 = false;
+        }
+
+        this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+        await new Promise((resolve) => {
+            this.optimalW = false;
+            this.optimalA = false;
+
+            this.t1.to(this.character.rotation, {
+                y: Math.PI / 2,
+                duration: 0.2,
+            });
+
+            if (
+                (this.zones.zone1 && this.character.position.z - 4 < -79) ||
+                (this.zones.zone2 && this.character.position.z - 4 < -6) ||
+                (this.zones.zone3 && this.character.position.z - 4 < -81)
+            ) {
+                console.log("valid");
+            } else {
+                this.t1.to(
+                    this.character.position,
+                    {
+                        z: this.character.position.z - 4,
+                        duration: 0.2,
+                    },
+                    "-=0.2"
+                );
+            }
+
+            this.t1.to(
+                this.character.position,
+                {
+                    y: 4,
+                    duration: 0.1,
+                },
+                "-=0.2"
+            );
+            this.t1.to(
+                this.character.position,
+                {
+                    y: 0.7536406517028809,
+                    duration: 0.1,
+                    onComplete: resolve,
+                },
+                "-=0.1"
+            );
+        });
+    }
+
+    async onLeft() {
+        // Zone 1 logic
+        if (
+            this.character.position.x < 114 &&
+            this.character.position.x > 39 &&
+            ((this.character.position.z > -79 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 74 &&
+                    this.character.position.z > 0.934))
+        ) {
+            this.zones.zone1 = true;
+            this.zones.zone2 = false;
+            this.zones.zone3 = false;
+        }
+
+        if (
+            this.zones.zone1 &&
+            this.character.position.z < 0.934 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < 43
+        ) {
+            this.zones.zone1 = false;
+        }
+
+        // Zone 2 logic
+
+        if (
+            this.character.position.x < 37 &&
+            this.character.position.x > -26 &&
+            this.character.position.z > -6 &&
+            this.character.position.z < 5
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = true;
+            this.zones.zone3 = false;
+        } else {
+            this.zones.zone2 = false;
+        }
+
+        // Zone 3 logic
+
+        if (
+            this.character.position.x < -29 &&
+            this.character.position.x > -52 &&
+            ((this.character.position.z > -81 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 70 &&
+                    this.character.position.z > 1.6))
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = false;
+            this.zones.zone3 = true;
+        }
+
+        if (
+            this.zones.zone3 &&
+            this.character.position.z < 2.8 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < -24
+        ) {
+            this.zones.zone3 = false;
+        }
+
+        this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+        if (this.optimalA) {
+            await new Promise((resolve) => {
+                this.optimalW = true;
+                this.optimalA = false;
+                this.t1.fromTo(
+                    this.character.rotation,
+                    {
+                        y: Math.PI * 2,
+                        duration: 0.2,
+                    },
+                    {
+                        y: (3 * Math.PI) / 2,
+                        duration: 0.2,
+                    }
+                );
+                if (
+                    (this.zones.zone1 && this.character.position.z + 4 > 74) ||
+                    (this.zones.zone2 && this.character.position.z + 4 > 0) ||
+                    (this.zones.zone3 && this.character.position.z + 4 > 75)
+                ) {
+                    console.log("a");
+                } else {
+                    this.t1.to(
+                        this.character.position,
+                        {
+                            z: this.character.position.z + 4,
+                            duration: 0.2,
+                        },
+                        "-=0.2"
+                    );
+                }
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 4,
+                        duration: 0.1,
+                    },
+                    "-=0.2"
+                );
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 0.7536406517028809,
+                        duration: 0.1,
+                        onComplete: resolve,
+                    },
+                    "-=0.1"
+                );
+            });
+        } else {
+            await new Promise((resolve) => {
+                this.optimalW = true;
+                this.optimalA = false;
+
+                this.t1.to(this.character.rotation, {
+                    y: (3 * Math.PI) / 2,
+                    duration: 0.2,
+                });
+                if (
+                    (this.zones.zone1 && this.character.position.z + 4 > 74) ||
+                    (this.zones.zone2 && this.character.position.z + 4 > 0) ||
+                    (this.zones.zone3 && this.character.position.z + 4 > 75)
+                ) {
+                    console.log("a");
+                } else {
+                    this.t1.to(
+                        this.character.position,
+                        {
+                            z: this.character.position.z + 4,
+                            duration: 0.2,
+                        },
+                        "-=0.2"
+                    );
+                }
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 4,
+                        duration: 0.1,
+                    },
+                    "-=0.2"
+                );
+                this.t1.to(
+                    this.character.position,
+                    {
+                        y: 0.7536406517028809,
+                        duration: 0.1,
+                        onComplete: resolve,
+                    },
+                    "-=0.1"
+                );
+            });
+        }
+    }
+
+    async onDown() {
+        // Zone 1 logic
+        if (
+            this.character.position.x < 114 &&
+            this.character.position.x > 39 &&
+            ((this.character.position.z > -79 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 74 &&
+                    this.character.position.z > 0.934))
+        ) {
+            this.zones.zone1 = true;
+            this.zones.zone2 = false;
+            this.zones.zone3 = false;
+        }
+
+        if (
+            this.zones.zone1 &&
+            this.character.position.z < 0.934 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < 43
+        ) {
+            this.zones.zone1 = false;
+        }
+
+        // Zone 2 logic
+
+        if (
+            this.character.position.x < 37 &&
+            this.character.position.x > -26 &&
+            this.character.position.z > -6 &&
+            this.character.position.z < 5
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = true;
+            this.zones.zone3 = false;
+        } else {
+            this.zones.zone2 = false;
+        }
+
+        // Zone 3 logic
+
+        if (
+            this.character.position.x < -29 &&
+            this.character.position.x > -52 &&
+            ((this.character.position.z > -81 &&
+                this.character.position.z < -7.069) ||
+                (this.character.position.z < 70 &&
+                    this.character.position.z > 1.6))
+        ) {
+            this.zones.zone1 = false;
+            this.zones.zone2 = false;
+            this.zones.zone3 = true;
+        }
+
+        if (
+            this.zones.zone3 &&
+            this.character.position.z < 2.8 &&
+            this.character.position.z > -7.069 &&
+            this.character.position.x < -24
+        ) {
+            this.zones.zone3 = false;
+        }
+
+        this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
+        await new Promise((resolve) => {
+            this.optimalW = false;
+            this.optimalA = false;
+
+            this.t1.to(this.character.rotation, {
+                y: Math.PI,
+                duration: 0.2,
+            });
+            if (
+                (this.zones.zone1 && this.character.position.x + 4 > 114) ||
+                (this.zones.zone3 && this.character.position.x + 4 > -26)
+            ) {
+            } else {
+                this.t1.to(
+                    this.character.position,
+                    {
+                        x: this.character.position.x + 4,
+                        duration: 0.2,
+                    },
+                    "-=0.2"
+                );
+            }
+
+            this.t1.to(
+                this.character.position,
+                {
+                    y: 4,
+                    duration: 0.1,
+                },
+                "-=0.2"
+            );
+            this.t1.to(
+                this.character.position,
+                {
+                    y: 0.7536406517028809,
+                    duration: 0.1,
+                    onComplete: resolve,
+                },
+                "-=0.1"
+            );
+        });
     }
 
     async onUp() {
