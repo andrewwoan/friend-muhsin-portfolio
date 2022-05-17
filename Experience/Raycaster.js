@@ -293,7 +293,21 @@ export default class Raycaster extends EventEmitter {
        
             <div class="gallery">
               <div class="title pad">My Art</div>
-              <div class="description">[Coming Soon]
+              <img src="./svgs/CharcoalLandscape.jpg" alt="" class="work-img">
+              <img src="./svgs/CharcoalStillLife.jpg" alt="" class="work-img">
+              <img src="./svgs/CityScapeDrawing.jpg" alt="" class="work-img">
+              <img src="./svgs/ClothesSketches.jpg" alt="" class="work-img">
+              <img src="./svgs/ContourGridBottle.jpg" alt="" class="work-img">
+              <img src="./svgs/ContourVerticalBottle.jpg" alt="" class="work-img">
+              <img src="./svgs/CurtainsInPen.jpg" alt="" class="work-img">
+              <img src="./svgs/MirrorInPen.jpg" alt="" class="work-img">
+              <img src="./svgs/NoseSketches.jpg" alt="" class="work-img">
+              <img src="./svgs/ObjectsInPen.jpg" alt="" class="work-img">
+              <img src="./svgs/PencilCube.jpg" alt="" class="work-img">
+              <img src="./svgs/PencilCylinder.jpg" alt="" class="work-img">
+              <img src="./svgs/PencilSphere.jpg" alt="" class="work-img">
+              <img src="./svgs/PlantNegativeSpace.jpg" alt="" class="work-img">
+
             </div>`;
         });
         this.seven.addEventListener("click", () => {
@@ -528,8 +542,21 @@ export default class Raycaster extends EventEmitter {
            
                 <div class="gallery">
                   <div class="title pad">My Art</div>
-                  <div class="description">[Coming Soon]
-                  </div>
+                  <img src="./svgs/CharcoalLandscape.jpg" alt="" class="work-img">
+                  <img src="./svgs/CharcoalStillLife.jpg" alt="" class="work-img">
+                  <img src="./svgs/CityScapeDrawing.jpg" alt="" class="work-img">
+                  <img src="./svgs/ClothesSketches.jpg" alt="" class="work-img">
+                  <img src="./svgs/ContourGridBottle.jpg" alt="" class="work-img">
+                  <img src="./svgs/ContourVerticalBottle.jpg" alt="" class="work-img">
+                  <img src="./svgs/CurtainsInPen.jpg" alt="" class="work-img">
+                  <img src="./svgs/MirrorInPen.jpg" alt="" class="work-img">
+                  <img src="./svgs/NoseSketches.jpg" alt="" class="work-img">
+                  <img src="./svgs/ObjectsInPen.jpg" alt="" class="work-img">
+                  <img src="./svgs/PencilCube.jpg" alt="" class="work-img">
+                  <img src="./svgs/PencilCylinder.jpg" alt="" class="work-img">
+                  <img src="./svgs/PencilSphere.jpg" alt="" class="work-img">
+                  <img src="./svgs/PlantNegativeSpace.jpg" alt="" class="work-img">
+
                 </div>`;
             } else if (this.intersectionObject.object.name === "Cube097") {
                 this.content.classList.remove("hidden");

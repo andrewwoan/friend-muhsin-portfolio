@@ -299,6 +299,10 @@ gap: 6px;
     transform: scale(0.95);
 }
 
+.work-img{
+    margin-bottom: 12px;
+}
+
 @media (max-width: 865px) {
     .content-wrapper{
         padding: 10px 5px;
