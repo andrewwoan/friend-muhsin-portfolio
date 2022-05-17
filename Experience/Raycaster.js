@@ -11,6 +11,7 @@ export default class Raycaster extends EventEmitter {
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.render = this.experience.render;
+        this.renderer = this.experience.renderer;
         this.controls = this.experience.controls;
         this.resources = this.experience.resources.items.gallery.scene.children;
 
@@ -61,8 +62,9 @@ export default class Raycaster extends EventEmitter {
 
         this.setListeners();
 
-        window.addEventListener("pointermove", this.onPointerMove);
-        window.addEventListener("pointerdown", this.onPointerDown);
+        window.addEventListener("mousemove", this.onPointerMove.bind(this));
+        window.addEventListener("mousedown", this.onPointerDown.bind(this));
+        window.addEventListener("touchstart", this.onTouchStart.bind(this));
     }
 
     setListeners() {
@@ -329,8 +331,13 @@ export default class Raycaster extends EventEmitter {
         });
     }
 
+    onTouchStart(event) {
+        this.pointer.x = (event.touches[0].clientX / this.sizes.width) * 2 - 1;
+        this.pointer.y =
+            -(event.touches[0].clientY / this.sizes.height) * 2 + 1;
+    }
+
     onPointerMove = (event) => {
-        // console.log(this.pointer);
         this.pointer.x = (event.clientX / this.sizes.width) * 2 - 1;
         this.pointer.y = -(event.clientY / this.sizes.height) * 2 + 1;
     };

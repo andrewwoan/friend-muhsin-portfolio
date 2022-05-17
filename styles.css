@@ -9,6 +9,8 @@
 
 html,
 body {
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -147,6 +149,7 @@ a:hover, .list-item:hover{
     width: 100vw;
     height: 100vh;
     z-index: -1;
+    touch-action: none;
 }
 
 .play:hover{
@@ -275,7 +278,7 @@ img{
 }
 
 .mobile-controls{
-    visibility: hidden;
+    display: none;
     position: absolute;
     top: 80%;
     left: 50%;
@@ -310,7 +313,7 @@ gap: 6px;
     }
 
     .mobile-controls{
-        visibility: visible;
+        display: flex;
     }
   
 }

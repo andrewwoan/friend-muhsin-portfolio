@@ -27,10 +27,10 @@ export default class Resources extends EventEmitter {
 
         this.play.addEventListener("click", () => {
             GSAP.set(this.screen, {
-                visibility: "hidden",
+                display: "none",
             });
             GSAP.set(this.play, {
-                visibility: "hidden",
+                display: "none",
             });
             this.emit("bounce");
         });
@@ -73,7 +73,7 @@ export default class Resources extends EventEmitter {
             this.t1 = new GSAP.timeline({ defaults: { ease: "none" } });
             this.t1.set(this.progressBar, {
                 delay: 0.7,
-                visibility: "hidden",
+                display: "none",
             });
             this.t1.set(this.play, {
                 opacity: 1,
